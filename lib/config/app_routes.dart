@@ -1,16 +1,16 @@
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:smart_wallet/features/bottom_nav/presentation/screens/bottom_nav_screen.dart';
 
 class AppRoutes {
-  static const String homeScreen = "HomeScreen";
+  static const String bottomNavScreen = "BottomNavScreen";
 
   static GoRouter router = GoRouter(
     routes: <RouteBase>[
       GoRoute(
         path: '/',
-        name: homeScreen,
+        name: bottomNavScreen,
         builder: (context, state) {
-          return Placeholder();
+          return BottomNavScreen();
         },
       ),
     ],
