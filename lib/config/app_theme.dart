@@ -11,6 +11,11 @@ class AppTheme {
           fontWeight: FontWeight.bold,
           color: Colors.black,
         ),
+        titleSmall: TextStyle(
+          fontSize: 19,
+          fontWeight: FontWeight.w500,
+          color: Colors.black,
+        ),
       ),
       inputDecorationTheme: InputDecorationTheme(
         fillColor: Colors.grey[50],
@@ -26,7 +31,7 @@ class AppTheme {
       ),
 
       textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(foregroundColor: Colors.grey.shade800),
+        style: TextButton.styleFrom(foregroundColor: Colors.grey.shade700),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
