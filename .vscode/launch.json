@@ -1,0 +1,46 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "compounds": [
+        {
+            "name": "IOS and ANDROID",
+            "configurations": [
+                "iOS",
+                "Android"
+            ]
+        }
+    ],
+    "configurations": [
+        {
+            "name": "smart_wallet",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "smart_wallet (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "smart_wallet (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "Android",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "emulator-5554"
+        },
+        {
+            "name": "iOS",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "31D96B0B-841B-4249-A32F-F168E576EB3F"
+        },
+    ]
+}

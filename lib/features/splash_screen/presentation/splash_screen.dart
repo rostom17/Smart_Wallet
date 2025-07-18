@@ -14,7 +14,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void _moveToNextScreen() async {
     await Future.delayed(const Duration(seconds: 1));
     if (mounted) {
-      context.pushNamed(AppRoutes.bottomNavScreen);
+      //context.pushNamed(AppRoutes.bottomNavScreen);
+      context.pushNamed(AppRoutes.loginScreen);
     }
   }
 
