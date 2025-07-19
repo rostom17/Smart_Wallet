@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:smart_wallet/config/app_routes.dart';
 
 import 'package:smart_wallet/config/color_pallet.dart';
 import 'package:smart_wallet/features/bottom_nav/presentation/bloc/bottom_nav_cubit.dart';
 import 'package:smart_wallet/features/home/presentation/screens/home_screen.dart';
 
+// ignore: must_be_immutable
 class BottomNavScreen extends StatelessWidget {
+  BottomNavScreen({super.key});
+
   int _currentIndex = 0;
   final List<Widget> _pages = [
     HomeScreen(),
@@ -30,7 +35,9 @@ class BottomNavScreen extends StatelessWidget {
               ? Transform.scale(
                   scale: 1.2,
                   child: FloatingActionButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.pushNamed(AppRoutes.addExpenseScreen);
+                    },
                     backgroundColor: ColorPallet.primaryColor,
                     foregroundColor: ColorPallet.whiteColor,
                     shape: RoundedRectangleBorder(
