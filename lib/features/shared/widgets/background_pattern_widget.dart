@@ -26,10 +26,7 @@ class BackgroundPatternWidget extends StatelessWidget {
               ),
             ),
             SvgPicture.asset("assets/images/pattern.svg"),
-            Padding(
-              padding: EdgeInsets.only(top: 80, right: 24, left: 24),
-              child: yourWidgetTree,
-            ),
+            yourWidgetTree,
           ],
         ),
       ),

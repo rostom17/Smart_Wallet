@@ -12,63 +12,66 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
     return BackgroundPatternWidget(
-      yourWidgetTree: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Good Afternoon",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
+      yourWidgetTree: Padding(
+        padding: const EdgeInsets.only(top: 80, left: 24, right: 24),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Good Afternoon",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      "Rostom Ali",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: ColorPallet.secondaryColor.withAlpha(155),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Badge(
+                      backgroundColor: Colors.orange,
+                      child: Icon(CupertinoIcons.bell, color: Colors.white),
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    "Rostom Ali",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: ColorPallet.secondaryColor.withAlpha(155),
-                  borderRadius: BorderRadius.circular(8),
                 ),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Badge(
-                    backgroundColor: Colors.orange,
-                    child: Icon(CupertinoIcons.bell, color: Colors.white),
-                  ),
+              ],
+            ),
+            const SizedBox(height: 28),
+            BalanceCardWidget(screenHeight: screenHeight),
+            const SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Transection History",
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 28),
-          BalanceCardWidget(screenHeight: screenHeight),
-          const SizedBox(height: 12),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Transection History",
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
-              TextButton(onPressed: () {}, child: Text("See all")),
-            ],
-          ),
-          ...List.generate(5, (index) => TransectionCardWidget()),
-        ],
+                TextButton(onPressed: () {}, child: Text("See all")),
+              ],
+            ),
+            ...List.generate(5, (index) => TransectionCardWidget()),
+          ],
+        ),
       ),
     );
   }

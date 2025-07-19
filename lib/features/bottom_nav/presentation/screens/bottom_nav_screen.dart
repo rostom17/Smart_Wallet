@@ -6,6 +6,7 @@ import 'package:smart_wallet/config/app_routes.dart';
 import 'package:smart_wallet/config/color_pallet.dart';
 import 'package:smart_wallet/features/bottom_nav/presentation/bloc/bottom_nav_cubit.dart';
 import 'package:smart_wallet/features/home/presentation/screens/home_screen.dart';
+import 'package:smart_wallet/features/wallet/presentation/screens/wallet_screen.dart';
 
 // ignore: must_be_immutable
 class BottomNavScreen extends StatelessWidget {
@@ -14,8 +15,8 @@ class BottomNavScreen extends StatelessWidget {
   int _currentIndex = 0;
   final List<Widget> _pages = [
     HomeScreen(),
-    Container(color: Colors.pink),
     Container(color: Colors.deepPurple),
+    WalletScreen(),
     Container(color: Colors.green),
   ];
 
