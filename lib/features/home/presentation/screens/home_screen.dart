@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smart_wallet/config/color_pallet.dart';
 import 'package:smart_wallet/features/home/presentation/widgets/balance_card_widget.dart';
-import 'package:smart_wallet/features/home/presentation/widgets/transection_history_widget.dart';
+import 'package:smart_wallet/features/home/presentation/widgets/transection_card_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -88,7 +88,7 @@ class HomeScreen extends StatelessWidget {
                       TextButton(onPressed: () {}, child: Text("See all")),
                     ],
                   ),
-                  TransectionHistoryWidget(),
+                  ...List.generate(5, (index) => TransectionCardWidget()),
                 ],
               ),
             ),
