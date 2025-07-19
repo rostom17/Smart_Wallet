@@ -4,6 +4,7 @@ import 'package:smart_wallet/config/color_pallet.dart';
 import 'package:smart_wallet/features/home/presentation/widgets/balance_card_widget.dart';
 import 'package:smart_wallet/features/home/presentation/widgets/transection_card_widget.dart';
 import 'package:smart_wallet/features/shared/widgets/background_pattern_widget.dart';
+import 'package:smart_wallet/features/shared/widgets/notification_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -41,19 +42,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: ColorPallet.secondaryColor.withAlpha(155),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: Badge(
-                      backgroundColor: Colors.orange,
-                      child: Icon(CupertinoIcons.bell, color: Colors.white),
-                    ),
-                  ),
-                ),
+                NotificationWidget(),
               ],
             ),
             const SizedBox(height: 28),
