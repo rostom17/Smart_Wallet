@@ -3,10 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:smart_wallet/config/color_pallet.dart';
 import 'package:smart_wallet/features/shared/widgets/background_pattern_widget.dart';
 import 'package:smart_wallet/features/shared/widgets/notification_widget.dart';
+import 'package:smart_wallet/features/wallet/presentation/widgets/select_option_widget.dart';
 
-class WalletScreen extends StatelessWidget {
+class WalletScreen extends StatefulWidget {
   const WalletScreen({super.key});
 
+  @override
+  State<WalletScreen> createState() => _WalletScreenState();
+}
+
+class _WalletScreenState extends State<WalletScreen> {
   @override
   Widget build(BuildContext context) {
     return BackgroundPatternWidget(
@@ -73,7 +79,14 @@ class WalletScreen extends StatelessWidget {
                         _builActionButton(
                           icon: Icons.add_circle,
                           label: "Add",
-                          onTap: () {},
+                          onTap: () {
+                            showModalBottomSheet(
+                              backgroundColor: Colors.transparent,
+
+                              context: context,
+                              builder: (context) => SelectPaymentOptionWidget(),
+                            );
+                          },
                         ),
                         const SizedBox(width: 20),
                         _builActionButton(

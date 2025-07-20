@@ -55,7 +55,7 @@ class BottomNavScreen extends StatelessWidget {
             shape: CircularNotchedRectangle(),
             notchMargin: 16,
             elevation: 10,
-            height: 80,
+            height: 50,
             child: Row(
               children: [
                 _buildTabItem(
