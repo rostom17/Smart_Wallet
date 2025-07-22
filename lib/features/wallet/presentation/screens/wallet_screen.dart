@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_wallet/config/color_pallet.dart';
+import 'package:smart_wallet/features/bottom_nav/presentation/bloc/bottom_nav_cubit.dart';
 import 'package:smart_wallet/features/shared/widgets/background_pattern_widget.dart';
 import 'package:smart_wallet/features/shared/widgets/notification_widget.dart';
 import 'package:smart_wallet/features/wallet/presentation/widgets/select_option_widget.dart';
@@ -26,7 +28,9 @@ class _WalletScreenState extends State<WalletScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      context.read<BottomNavCubit>().onTabChanged(0);
+                    },
                     child: Icon(Icons.arrow_back_ios, color: Colors.white),
                   ),
                   Text(

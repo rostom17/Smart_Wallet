@@ -8,11 +8,9 @@ import 'package:smart_wallet/features/bottom_nav/presentation/bloc/bottom_nav_cu
 import 'package:smart_wallet/features/home/presentation/screens/home_screen.dart';
 import 'package:smart_wallet/features/wallet/presentation/screens/wallet_screen.dart';
 
-// ignore: must_be_immutable
 class BottomNavScreen extends StatelessWidget {
   BottomNavScreen({super.key});
 
-  int _currentIndex = 0;
   final List<Widget> _pages = [
     HomeScreen(),
     Container(color: Colors.deepPurple),
@@ -23,16 +21,16 @@ class BottomNavScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BottomNavCubit, int>(
-      builder: (context, state) {
+      builder: (context, bottomNavIndex) {
         return Scaffold(
           body: AnimatedSwitcher(
             duration: Duration(milliseconds: 500),
             switchInCurve: Curves.easeInOut,
             switchOutCurve: Curves.easeInOut,
-            child: _pages[state],
+            child: _pages[bottomNavIndex],
           ),
 
-          floatingActionButton: _currentIndex == 0
+          floatingActionButton: bottomNavIndex == 0
               ? Transform.scale(
                   scale: 1.2,
                   child: FloatingActionButton(
@@ -62,25 +60,29 @@ class BottomNavScreen extends StatelessWidget {
                   selectedIcon: "assets/icons/home_fill.png",
                   unselectedIcon: "assets/icons/home.png",
                   index: 0,
+                  bottomNavIndex: bottomNavIndex,
                   context: context,
                 ),
                 _buildTabItem(
                   selectedIcon: "assets/icons/stats_fill.png",
                   unselectedIcon: "assets/icons/stats.png",
                   index: 1,
+                  bottomNavIndex: bottomNavIndex,
                   context: context,
                 ),
-                SizedBox(width: _currentIndex == 0 ? 60 : 0),
+                SizedBox(width: bottomNavIndex == 0 ? 60 : 0),
                 _buildTabItem(
                   selectedIcon: "assets/icons/wallet_fill.png",
                   unselectedIcon: "assets/icons/wallet.png",
                   index: 2,
+                  bottomNavIndex: bottomNavIndex,
                   context: context,
                 ),
                 _buildTabItem(
                   selectedIcon: "assets/icons/user_fill.png",
                   unselectedIcon: "assets/icons/user.png",
                   index: 3,
+                  bottomNavIndex: bottomNavIndex,
                   context: context,
                 ),
               ],
@@ -95,13 +97,14 @@ class BottomNavScreen extends StatelessWidget {
     required String selectedIcon,
     required String unselectedIcon,
     required int index,
+    required int bottomNavIndex,
     required BuildContext context,
   }) {
-    final isSelected = index == _currentIndex;
+    final isSelected = index == bottomNavIndex;
     return Expanded(
       child: InkWell(
         radius: 0,
-        onTap: () => _onTabSelected(index, context),
+        onTap: () => _onTabSelected(index, context, bottomNavIndex),
         child: isSelected
             ? ImageIcon(
                 AssetImage(selectedIcon),
@@ -112,7 +115,7 @@ class BottomNavScreen extends StatelessWidget {
     );
   }
 
-  void _onTabSelected(int index, BuildContext context) {
+  void _onTabSelected(int index, BuildContext context, int _currentIndex) {
     context.read<BottomNavCubit>().onTabChanged(index);
     _currentIndex = context.read<BottomNavCubit>().state;
   }
