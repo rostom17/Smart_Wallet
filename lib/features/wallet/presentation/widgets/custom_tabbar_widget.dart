@@ -20,6 +20,7 @@ class _CutomTabBarState extends State<CutomTabBar> {
         return Column(
           children: [
             _buildTabBar(tabIndex, context),
+            const SizedBox(height: 40),
             _buildTabBarView(tabIndex),
           ],
         );
