@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:smart_wallet/config/app_routes.dart';
 import 'package:smart_wallet/features/shared/widgets/background_pattern_widget.dart';
 import 'package:smart_wallet/features/shared/widgets/notification_widget.dart';
+import 'package:smart_wallet/features/wallet/presentation/bloc/account_option_cubit.dart';
 import 'package:smart_wallet/features/wallet/presentation/bloc/tab_index_cubit.dart';
 import 'package:smart_wallet/features/wallet/presentation/widgets/custom_tabbar_widget.dart';
 
@@ -11,8 +13,13 @@ class CardsAndBankAccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<TabIndexCubit>(
-      create: (context) => TabIndexCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<TabIndexCubit>(create: (context) => TabIndexCubit()),
+        BlocProvider<AccountOptionCubit>(
+          create: (context) => AccountOptionCubit(),
+        ),
+      ],
       child: BackgroundPatternWidget(
         yourWidgetTree: Column(
           children: [
@@ -24,7 +31,7 @@ class CardsAndBankAccountScreen extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      context.pop();
+                      context.pushReplacementNamed(AppRoutes.bottomNavScreen);
                     },
                     child: Icon(Icons.arrow_back_ios, color: Colors.white),
                   ),
