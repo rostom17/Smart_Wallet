@@ -18,8 +18,15 @@ class SmartWallet extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<BottomNavCubit>(create: (_) => BottomNavCubit()),
-        BlocProvider<ShowPasswordCubit>(create: (_) => ShowPasswordCubit()),
-        BlocProvider<OtherOptionCubit>(create: (_) => OtherOptionCubit()),
+        BlocProvider<ShowPasswordCubit>(
+          create: (_) => ShowPasswordCubit(),
+          lazy: true,
+        ),
+        BlocProvider<OtherOptionCubit>(
+          create: (_) => OtherOptionCubit(),
+          lazy: true,
+        ),
+        
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

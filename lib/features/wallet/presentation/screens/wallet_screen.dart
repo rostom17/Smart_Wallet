@@ -82,7 +82,6 @@ class _WalletScreenState extends State<WalletScreen> {
                           onTap: () {
                             showModalBottomSheet(
                               backgroundColor: Colors.transparent,
-
                               context: context,
                               builder: (context) => SelectPaymentOptionWidget(),
                             );
