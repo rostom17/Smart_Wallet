@@ -4,6 +4,7 @@ import 'package:smart_wallet/features/auth/presentation/screens/login_screen.dar
 import 'package:smart_wallet/features/auth/presentation/screens/signup_screen.dart';
 import 'package:smart_wallet/features/bottom_nav/presentation/screens/bottom_nav_screen.dart';
 import 'package:smart_wallet/features/splash_screen/presentation/splash_screen.dart';
+import 'package:smart_wallet/features/wallet/presentation/screens/cards_and_bank_account_screen.dart';
 import 'package:smart_wallet/features/wallet/presentation/screens/wallet_screen.dart';
 
 class AppRoutes {
@@ -13,6 +14,7 @@ class AppRoutes {
   static const String signupScreen = "SignupScreen";
   static const String addExpenseScreen = "AddExpenseScreen";
   static const String walletScreen = "WalletScreen";
+  static const String cardAndBankAccountScreen = "cardAndBankAcScreen";
 
   static GoRouter router = GoRouter(
     routes: <RouteBase>[
@@ -56,6 +58,14 @@ class AppRoutes {
         name: walletScreen,
         builder: (context, state) {
           return WalletScreen();
+        },
+      ),
+
+      GoRoute(
+        path: '/cardAndBankAcScreen',
+        name: cardAndBankAccountScreen,
+        builder: (context, state) {
+          return CardsAndBankAccountScreen();
         },
       ),
     ],
