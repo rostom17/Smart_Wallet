@@ -4,6 +4,8 @@ import 'package:smart_wallet/config/app_routes.dart';
 import 'package:smart_wallet/config/app_theme.dart';
 import 'package:smart_wallet/features/auth/presentation/bloc/show_password_cubit.dart';
 import 'package:smart_wallet/features/bottom_nav/presentation/bloc/bottom_nav_cubit.dart';
+import 'package:smart_wallet/features/profile/presentation/bloc/change_profile_widget_cubit.dart';
+import 'package:smart_wallet/features/profile/presentation/bloc/show_password_cubit.dart';
 import 'package:smart_wallet/features/wallet/presentation/bloc/other_option_cubit.dart';
 
 void main() async {
@@ -26,7 +28,14 @@ class SmartWallet extends StatelessWidget {
           create: (_) => OtherOptionCubit(),
           lazy: true,
         ),
-        
+
+        BlocProvider<ChangeProfileWidgetCubit>(
+          create: (_) => ChangeProfileWidgetCubit(),
+        ),
+        BlocProvider<ShowPasswordCubit2>(
+          create: (_) => ShowPasswordCubit2(),
+          lazy: true,
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

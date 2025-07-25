@@ -41,6 +41,12 @@ class AppTheme {
           fixedSize: Size.fromWidth(double.maxFinite),
         ),
       ),
+
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          backgroundColor: ColorPallet.secondaryColor,
+        ),
+      ),
     );
   }
 }

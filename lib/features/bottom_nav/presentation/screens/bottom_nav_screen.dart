@@ -6,6 +6,7 @@ import 'package:smart_wallet/config/app_routes.dart';
 import 'package:smart_wallet/config/color_pallet.dart';
 import 'package:smart_wallet/features/bottom_nav/presentation/bloc/bottom_nav_cubit.dart';
 import 'package:smart_wallet/features/home/presentation/screens/home_screen.dart';
+import 'package:smart_wallet/features/profile/presentation/screens/profile_screen.dart';
 import 'package:smart_wallet/features/wallet/presentation/screens/wallet_screen.dart';
 
 class BottomNavScreen extends StatelessWidget {
@@ -15,7 +16,7 @@ class BottomNavScreen extends StatelessWidget {
     HomeScreen(),
     Container(color: Colors.deepPurple),
     WalletScreen(),
-    Container(color: Colors.green),
+    ProfileScreen(),
   ];
 
   @override

@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:smart_wallet/config/color_pallet.dart';
 import 'package:smart_wallet/features/bottom_nav/presentation/bloc/bottom_nav_cubit.dart';
 import 'package:smart_wallet/features/shared/widgets/background_pattern_widget.dart';
-import 'package:smart_wallet/features/shared/widgets/notification_widget.dart';
+import 'package:smart_wallet/features/shared/widgets/custom_app_bar.dart';
 import 'package:smart_wallet/features/wallet/presentation/widgets/select_option_widget.dart';
 
 class WalletScreen extends StatefulWidget {
@@ -22,28 +23,12 @@ class _WalletScreenState extends State<WalletScreen> {
         padding: const EdgeInsets.only(top: 80),
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      context.read<BottomNavCubit>().onTabChanged(0);
-                    },
-                    child: Icon(Icons.arrow_back_ios, color: Colors.white),
-                  ),
-                  Text(
-                    "Wallet",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                  NotificationWidget(),
-                ],
-              ),
+            CustomAppBar(
+              appBarName: "Wallet",
+              onTapBackButton: () {
+                context.read<BottomNavCubit>().onTabChanged(0);
+              },
+              onTapNotificationButton: () {},
             ),
             const SizedBox(height: 48),
             ConstrainedBox(
