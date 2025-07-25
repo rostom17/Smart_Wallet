@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                 TextButton(onPressed: () {}, child: Text("See all")),
               ],
             ),
-            ...List.generate(5, (index) => TransectionCardWidget()),
+            ...List.generate(10, (index) => TransectionCardWidget()),
           ],
         ),
       ),
