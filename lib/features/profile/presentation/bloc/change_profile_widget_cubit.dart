@@ -20,9 +20,11 @@ class ChangeProfileWidgetCubit extends Cubit<int> {
     }
     if (index == 1) {
       emit(0);
+      return;
     }
     if (index == 2) {
       emit(1);
+      return;
     }
   }
 }
