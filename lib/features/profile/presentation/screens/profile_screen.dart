@@ -77,7 +77,21 @@ class ProfileScreen extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: widgetScreen[index],
+                    child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 500),
+                      transitionBuilder:
+                          (Widget child, Animation<double> animation) {
+                            return ScaleTransition(
+                              scale: animation,
+                              child: child,
+                            );
+                            // return FadeTransition(
+                            //   opacity: animation,
+                            //   child: child,
+                            // );
+                          },
+                      child: widgetScreen[index],
+                    ),
                   ),
                 ),
               ],
