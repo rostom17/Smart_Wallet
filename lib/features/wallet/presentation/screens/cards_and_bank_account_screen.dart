@@ -9,13 +9,17 @@ import 'package:smart_wallet/features/wallet/presentation/bloc/tab_index_cubit.d
 import 'package:smart_wallet/features/wallet/presentation/widgets/custom_tabbar_widget.dart';
 
 class CardsAndBankAccountScreen extends StatelessWidget {
-  const CardsAndBankAccountScreen({super.key});
+  const CardsAndBankAccountScreen({super.key, required this.selectedIndex});
+
+  final int selectedIndex;
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<TabIndexCubit>(create: (context) => TabIndexCubit()),
+        BlocProvider<TabIndexCubit>(
+          create: (context) => TabIndexCubit(selectedIndex: selectedIndex),
+        ),
         BlocProvider<AccountOptionCubit>(
           create: (context) => AccountOptionCubit(),
         ),

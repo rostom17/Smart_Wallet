@@ -65,7 +65,13 @@ class AppRoutes {
         path: '/cardAndBankAcScreen',
         name: cardAndBankAccountScreen,
         builder: (context, state) {
-          return CardsAndBankAccountScreen();
+          final int selectedIndex;
+          if (state.extra != null) {
+            selectedIndex = state.extra as int;
+          } else {
+            selectedIndex = 0;
+          }
+          return CardsAndBankAccountScreen(selectedIndex: selectedIndex);
         },
       ),
     ],

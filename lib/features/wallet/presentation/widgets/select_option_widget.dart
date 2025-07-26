@@ -43,14 +43,14 @@ class _SelectPaymentOptionWidgetState extends State<SelectPaymentOptionWidget> {
                     name: "Cards",
                     imagePath: "assets/icons/credit.png",
                     onTap: () {
-                      context.pushNamed(AppRoutes.cardAndBankAccountScreen);
+                      context.pushNamed(AppRoutes.cardAndBankAccountScreen, extra: 0);
                     },
                   ),
                   _buildPaymentMethodOption(
                     name: "Bank Account",
                     imagePath: "assets/icons/bank.png",
                     onTap: () {
-                      context.pushNamed(AppRoutes.cardAndBankAccountScreen);
+                      context.pushNamed(AppRoutes.cardAndBankAccountScreen, extra: 1);
                     },
                   ),
                   _buildPaymentMethodOption(

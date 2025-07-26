@@ -1,7 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TabIndexCubit extends Cubit<int> {
-  TabIndexCubit() : super(0);
+  TabIndexCubit({required this.selectedIndex}) : super(selectedIndex);
+
+  final int selectedIndex;
 
   void onTapCard() {
     emit(0);
