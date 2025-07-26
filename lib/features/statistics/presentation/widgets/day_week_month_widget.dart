@@ -58,7 +58,7 @@ class DayWeekMonthWidget extends StatelessWidget {
         context.read<ChooseDayMonthYearCubit>().onChangedIndex(index);
       },
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 500),
+        duration: Duration(milliseconds: 700),
         curve: Curves.easeInOut,
         height: 40,
         width: MediaQuery.of(context).size.width * .19,

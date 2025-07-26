@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:smart_wallet/features/home/presentation/widgets/balance_card_widget.dart';
-import 'package:smart_wallet/features/home/presentation/widgets/transection_card_widget.dart';
+import 'package:smart_wallet/features/shared/widgets/transection_card_widget.dart';
 import 'package:smart_wallet/features/shared/widgets/background_pattern_widget.dart';
 import 'package:smart_wallet/features/shared/widgets/notification_widget.dart';
 
@@ -60,7 +60,6 @@ class HomeScreen extends StatelessWidget {
             ...List.generate(
               10,
               (index) => TransectionCardWidget(
-                selectedIndex: 0,
                 itemIndex: index,
                 fromHomeScreen: true,
               ),
