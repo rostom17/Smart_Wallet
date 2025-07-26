@@ -39,5 +39,11 @@
             "type": "dart",
             "deviceId": "31D96B0B-841B-4249-A32F-F168E576EB3F"
         },
+        {
+            "name": "Iphone 16 pro max",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "ECC64213-4DE7-49F5-B4EB-69648F139EF8"
+        },
     ]
 }

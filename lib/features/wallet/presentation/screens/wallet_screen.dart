@@ -32,7 +32,9 @@ class _WalletScreenState extends State<WalletScreen> {
             ),
             const SizedBox(height: 48),
             ConstrainedBox(
-              constraints: BoxConstraints(minHeight: 600),
+              constraints: BoxConstraints(
+                minHeight: MediaQuery.of(context).size.height - 128,
+              ),
               child: Container(
                 width: double.maxFinite,
                 decoration: BoxDecoration(
