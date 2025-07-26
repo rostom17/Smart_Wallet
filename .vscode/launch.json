@@ -4,7 +4,7 @@
         {
             "name": "IOS and ANDROID",
             "configurations": [
-                "iOS",
+                "iPhnone 16",
                 "Android"
             ]
         }
@@ -34,13 +34,13 @@
             "deviceId": "emulator-5554"
         },
         {
-            "name": "iOS",
+            "name": "iPhnone 16",
             "request": "launch",
             "type": "dart",
-            "deviceId": "31D96B0B-841B-4249-A32F-F168E576EB3F"
+            "deviceId": "4DF41169-1A48-4286-9C8E-653234780CE4"
         },
         {
-            "name": "Iphone 16 pro max",
+            "name": "iPhone 16 pro max",
             "request": "launch",
             "type": "dart",
             "deviceId": "ECC64213-4DE7-49F5-B4EB-69648F139EF8"
