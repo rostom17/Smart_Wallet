@@ -69,7 +69,8 @@ class StatisticsScreen extends StatelessWidget {
             const SizedBox(height: 16),
             ...List.generate(
               monthNames.length,
-              (index) => TransectionCardWidget(),
+              (index) =>
+                  TransectionCardWidget(selectedIndex: 0, itemIndex: index),
             ),
           ],
         ),
