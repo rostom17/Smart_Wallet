@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_wallet/config/color_pallet.dart';
+import 'package:smart_wallet/core/constans/app_colors.dart';
 import '../bloc/show_password_cubit.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -29,17 +29,11 @@ class CustomTextField extends StatelessWidget {
             filled: true,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(
-                color: ColorPallet.primaryColor,
-                width: 1.5,
-              ),
+              borderSide: BorderSide(color: AppColors.primaryColor, width: 1.5),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(
-                color: ColorPallet.primaryColor,
-                width: 1.5,
-              ),
+              borderSide: BorderSide(color: AppColors.primaryColor, width: 1.5),
             ),
             label: Text(labelName),
             suffixIcon: isPassword

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:smart_wallet/config/color_pallet.dart';
+import 'package:smart_wallet/core/constans/app_colors.dart';
 
 class NotificationWidget extends StatelessWidget {
   const NotificationWidget({super.key});
@@ -9,7 +9,7 @@ class NotificationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: ColorPallet.secondaryColor.withAlpha(155),
+        color: AppColors.secondaryColor.withAlpha(155),
         borderRadius: BorderRadius.circular(8),
       ),
       child: IconButton(

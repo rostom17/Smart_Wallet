@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_wallet/config/color_pallet.dart';
+import 'package:smart_wallet/core/constans/app_colors.dart';
 import 'package:smart_wallet/features/wallet/presentation/bloc/account_option_cubit.dart';
 
 class AccountsTab extends StatelessWidget {
@@ -79,7 +79,7 @@ class AccountsTab extends StatelessWidget {
                   padding: const EdgeInsets.all(14.0),
                   child: ImageIcon(
                     AssetImage(iconPath),
-                    color: isSelected ? ColorPallet.primaryColor : Colors.grey,
+                    color: isSelected ? AppColors.primaryColor : Colors.grey,
                   ),
                 ),
               ),
@@ -96,7 +96,7 @@ class AccountsTab extends StatelessWidget {
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                         color: isSelected
-                            ? ColorPallet.primaryColor
+                            ? AppColors.primaryColor
                             : Colors.grey.shade700,
                       ),
                     ),
@@ -106,7 +106,7 @@ class AccountsTab extends StatelessWidget {
                         fontSize: 11.5,
                         fontWeight: FontWeight.w600,
                         color: isSelected
-                            ? ColorPallet.secondaryColor
+                            ? AppColors.secondaryColor
                             : Colors.grey.shade700,
                       ),
                     ),

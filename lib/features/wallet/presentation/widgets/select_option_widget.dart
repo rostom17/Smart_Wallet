@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:smart_wallet/config/app_routes.dart';
-import 'package:smart_wallet/config/color_pallet.dart';
+import 'package:smart_wallet/core/router/app_routes.dart';
+import 'package:smart_wallet/core/constans/app_colors.dart';
 import 'package:smart_wallet/features/wallet/presentation/bloc/other_option_cubit.dart';
 
 class SelectPaymentOptionWidget extends StatefulWidget {
@@ -26,7 +26,7 @@ class _SelectPaymentOptionWidgetState extends State<SelectPaymentOptionWidget> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: ColorPallet.primaryColor, width: 2),
+          border: Border.all(color: AppColors.primaryColor, width: 2),
         ),
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -43,14 +43,20 @@ class _SelectPaymentOptionWidgetState extends State<SelectPaymentOptionWidget> {
                     name: "Cards",
                     imagePath: "assets/icons/credit.png",
                     onTap: () {
-                      context.pushNamed(AppRoutes.cardAndBankAccountScreen, extra: 0);
+                      context.pushNamed(
+                        AppRoutes.cardAndBankAccountScreen,
+                        extra: 0,
+                      );
                     },
                   ),
                   _buildPaymentMethodOption(
                     name: "Bank Account",
                     imagePath: "assets/icons/bank.png",
                     onTap: () {
-                      context.pushNamed(AppRoutes.cardAndBankAccountScreen, extra: 1);
+                      context.pushNamed(
+                        AppRoutes.cardAndBankAccountScreen,
+                        extra: 1,
+                      );
                     },
                   ),
                   _buildPaymentMethodOption(
@@ -104,7 +110,7 @@ class _SelectPaymentOptionWidgetState extends State<SelectPaymentOptionWidget> {
             enabled: true,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: ColorPallet.primaryColor, width: 2),
+              borderSide: BorderSide(color: AppColors.primaryColor, width: 2),
             ),
             suffix: InkWell(
               onTap: () {
@@ -115,7 +121,7 @@ class _SelectPaymentOptionWidgetState extends State<SelectPaymentOptionWidget> {
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: ColorPallet.primaryColor,
+                  color: AppColors.primaryColor,
                 ),
               ),
             ),
@@ -152,8 +158,8 @@ class _SelectPaymentOptionWidgetState extends State<SelectPaymentOptionWidget> {
   }) {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
-        backgroundColor: isCancel ? Colors.white : ColorPallet.secondaryColor,
-        foregroundColor: isCancel ? ColorPallet.primaryColor : Colors.white,
+        backgroundColor: isCancel ? Colors.white : AppColors.secondaryColor,
+        foregroundColor: isCancel ? AppColors.primaryColor : Colors.white,
       ),
       onPressed: onPressed,
       child: Text(buttonName),

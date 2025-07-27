@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_wallet/config/color_pallet.dart';
+import 'package:smart_wallet/core/constans/app_colors.dart';
 
 class CardTab extends StatefulWidget {
   const CardTab({super.key});
@@ -91,7 +91,7 @@ class _CardTabState extends State<CardTab> {
         labelStyle: TextStyle(fontSize: 11, color: Colors.grey.shade700),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: ColorPallet.primaryColor, width: 1.5),
+          borderSide: BorderSide(color: AppColors.primaryColor, width: 1.5),
         ),
       ),
       validator: (value) {

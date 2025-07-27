@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:smart_wallet/config/app_routes.dart';
+import 'package:smart_wallet/core/router/app_routes.dart';
 
-import 'package:smart_wallet/config/color_pallet.dart';
+import 'package:smart_wallet/core/constans/app_colors.dart';
 import 'package:smart_wallet/features/bottom_nav/presentation/bloc/bottom_nav_cubit.dart';
 import 'package:smart_wallet/features/home/presentation/screens/home_screen.dart';
 import 'package:smart_wallet/features/profile/presentation/screens/profile_screen.dart';
@@ -39,8 +39,8 @@ class BottomNavScreen extends StatelessWidget {
                     onPressed: () {
                       context.pushNamed(AppRoutes.addExpenseScreen);
                     },
-                    backgroundColor: ColorPallet.primaryColor,
-                    foregroundColor: ColorPallet.whiteColor,
+                    backgroundColor: AppColors.primaryColor,
+                    foregroundColor: AppColors.whiteColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadiusGeometry.circular(32),
                     ),
@@ -108,10 +108,7 @@ class BottomNavScreen extends StatelessWidget {
         radius: 0,
         onTap: () => _onTabSelected(index, context, bottomNavIndex),
         child: isSelected
-            ? ImageIcon(
-                AssetImage(selectedIcon),
-                color: ColorPallet.primaryColor,
-              )
+            ? ImageIcon(AssetImage(selectedIcon), color: AppColors.primaryColor)
             : ImageIcon(AssetImage(unselectedIcon)),
       ),
     );

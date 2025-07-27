@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_wallet/config/color_pallet.dart';
+import 'package:smart_wallet/core/constans/app_colors.dart';
 import 'package:smart_wallet/features/shared/bloc/transection_card_index_cubit.dart';
 
 class TransectionCardWidget extends StatelessWidget {
@@ -30,7 +30,7 @@ class TransectionCardWidget extends StatelessWidget {
               width: double.maxFinite,
               decoration: BoxDecoration(
                 color: isSelected && !fromHomeScreen
-                    ? ColorPallet.secondaryColor
+                    ? AppColors.secondaryColor
                     : null,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [

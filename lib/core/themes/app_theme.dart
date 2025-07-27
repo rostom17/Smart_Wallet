@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:smart_wallet/config/color_pallet.dart';
+import 'package:smart_wallet/core/constans/app_colors.dart';
 
 class AppTheme {
   static ThemeData lightTheme() {
     return ThemeData(
-      scaffoldBackgroundColor: ColorPallet.whiteColor,
+      scaffoldBackgroundColor: AppColors.whiteColor,
       textTheme: TextTheme(
         headlineMedium: TextStyle(
           fontSize: 28,
@@ -36,15 +36,15 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          foregroundColor: ColorPallet.whiteColor,
-          backgroundColor: ColorPallet.secondaryColor,
+          foregroundColor: AppColors.whiteColor,
+          backgroundColor: AppColors.secondaryColor,
           fixedSize: Size.fromWidth(double.maxFinite),
         ),
       ),
 
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
-          backgroundColor: ColorPallet.secondaryColor,
+          backgroundColor: AppColors.secondaryColor,
         ),
       ),
     );

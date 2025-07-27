@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_wallet/config/color_pallet.dart';
+import 'package:smart_wallet/core/constans/app_colors.dart';
 
 class BalanceCardWidget extends StatelessWidget {
   const BalanceCardWidget({super.key, required this.screenHeight});
@@ -13,7 +13,7 @@ class BalanceCardWidget extends StatelessWidget {
       height: screenHeight * .2,
       width: double.maxFinite,
       decoration: BoxDecoration(
-        color: ColorPallet.secondaryColor,
+        color: AppColors.secondaryColor,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(

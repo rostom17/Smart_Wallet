@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:smart_wallet/config/color_pallet.dart';
+import 'package:smart_wallet/core/constans/app_colors.dart';
 
 class BackgroundPatternWidget extends StatelessWidget {
   const BackgroundPatternWidget({super.key, required this.yourWidgetTree});
@@ -18,7 +18,7 @@ class BackgroundPatternWidget extends StatelessWidget {
               height: screenHeight * .32,
               width: double.maxFinite,
               decoration: BoxDecoration(
-                color: ColorPallet.primaryColor,
+                color: AppColors.primaryColor,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.elliptical(200, 60),
                   bottomRight: Radius.elliptical(200, 60),

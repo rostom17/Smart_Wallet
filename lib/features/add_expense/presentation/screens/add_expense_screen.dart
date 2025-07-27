@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:smart_wallet/config/color_pallet.dart';
+import 'package:smart_wallet/core/constans/app_colors.dart';
 import 'package:smart_wallet/features/shared/widgets/background_pattern_widget.dart';
 
 class AddExpenseScreen extends StatefulWidget {
@@ -155,7 +155,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         isDense: true,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: ColorPallet.primaryColor, width: 2),
+          borderSide: BorderSide(color: AppColors.primaryColor, width: 2),
         ),
 
         hintText: hintText,
@@ -164,7 +164,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         prefixIcon: isAmount
             ? Icon(
                 CupertinoIcons.money_dollar,
-                color: ColorPallet.primaryColor,
+                color: AppColors.primaryColor,
                 size: 16,
               )
             : null,

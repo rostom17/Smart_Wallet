@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_wallet/config/color_pallet.dart';
+import 'package:smart_wallet/core/constans/app_colors.dart';
 import 'package:smart_wallet/features/wallet/presentation/bloc/tab_index_cubit.dart';
 import 'package:smart_wallet/features/wallet/presentation/widgets/accounts_tab.dart';
 import 'package:smart_wallet/features/wallet/presentation/widgets/card_tab.dart';
@@ -120,7 +120,7 @@ class _CutomTabBarState extends State<CutomTabBar> {
           title,
           style: TextStyle(
             fontWeight: FontWeight.w600,
-            color: isSelected ? ColorPallet.primaryColor : Colors.grey,
+            color: isSelected ? AppColors.primaryColor : Colors.grey,
           ),
         ),
       ),

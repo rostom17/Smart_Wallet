@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:smart_wallet/config/color_pallet.dart';
+import 'package:smart_wallet/core/constans/app_colors.dart';
 import 'package:smart_wallet/features/profile/presentation/bloc/change_profile_widget_cubit.dart';
 import 'package:smart_wallet/features/profile/presentation/widgets/profile_action_rows.dart';
 import 'package:smart_wallet/features/profile/presentation/widgets/profile_info_widget.dart';
@@ -68,7 +68,7 @@ class ProfileScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
-                    color: ColorPallet.primaryColor,
+                    color: AppColors.primaryColor,
                   ),
                 ),
                 const SizedBox(height: 28),
