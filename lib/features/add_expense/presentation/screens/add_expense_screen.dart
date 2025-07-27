@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:smart_wallet/core/constans/app_colors.dart';
 import 'package:smart_wallet/features/shared/widgets/background_pattern_widget.dart';

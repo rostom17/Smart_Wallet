@@ -58,11 +58,9 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             ...List.generate(
-              10,
-              (index) => TransectionCardWidget(
-                itemIndex: index,
-                fromHomeScreen: true,
-              ),
+              6,
+              (index) =>
+                  TransectionCardWidget(itemIndex: index, fromHomeScreen: true),
             ),
           ],
         ),
