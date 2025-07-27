@@ -77,7 +77,7 @@ class TransectionHistory {
       "isSpending": true,
       "amount": 980.00,
       "dateTime": "Jan 10, 2022",
-      "iconPath": AppStrings.salaryLogo,
+      "iconPath": AppStrings.traveLogo,
     },
   ];
 }
