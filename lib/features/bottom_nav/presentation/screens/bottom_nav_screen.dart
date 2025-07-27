@@ -22,17 +22,27 @@ class BottomNavScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bottomNavCubit = context.read<BottomNavCubit>();
     return BlocBuilder<BottomNavCubit, int>(
-      builder: (context, bottomNavIndex) {
+      builder: (context, selectedIndex) {
         return Scaffold(
           body: AnimatedSwitcher(
+            transitionBuilder: (child, animation) {
+              final previousIndex = bottomNavCubit.previousIndex;
+              final isForward = selectedIndex > previousIndex;
+              final offsetAnimation = Tween<Offset>(
+                begin: isForward ? Offset(1, 0) : Offset(-1, 0),
+                end: Offset.zero,
+              ).animate(animation);
+              return SlideTransition(position: offsetAnimation, child: child);
+            },
             duration: Duration(milliseconds: 500),
             switchInCurve: Curves.easeInOut,
             switchOutCurve: Curves.easeInOut,
-            child: _pages[bottomNavIndex],
+            child: _pages[selectedIndex],
           ),
 
-          floatingActionButton: bottomNavIndex == 0
+          floatingActionButton: selectedIndex == 0
               ? Transform.scale(
                   scale: 1.2,
                   child: FloatingActionButton(
@@ -62,29 +72,29 @@ class BottomNavScreen extends StatelessWidget {
                   selectedIcon: "assets/icons/home_fill.png",
                   unselectedIcon: "assets/icons/home.png",
                   index: 0,
-                  bottomNavIndex: bottomNavIndex,
+                  bottomNavIndex: selectedIndex,
                   context: context,
                 ),
                 _buildTabItem(
                   selectedIcon: "assets/icons/stats_fill.png",
                   unselectedIcon: "assets/icons/stats.png",
                   index: 1,
-                  bottomNavIndex: bottomNavIndex,
+                  bottomNavIndex: selectedIndex,
                   context: context,
                 ),
-                SizedBox(width: bottomNavIndex == 0 ? 60 : 0),
+                SizedBox(width: selectedIndex == 0 ? 60 : 0),
                 _buildTabItem(
                   selectedIcon: "assets/icons/wallet_fill.png",
                   unselectedIcon: "assets/icons/wallet.png",
                   index: 2,
-                  bottomNavIndex: bottomNavIndex,
+                  bottomNavIndex: selectedIndex,
                   context: context,
                 ),
                 _buildTabItem(
                   selectedIcon: "assets/icons/user_fill.png",
                   unselectedIcon: "assets/icons/user.png",
                   index: 3,
-                  bottomNavIndex: bottomNavIndex,
+                  bottomNavIndex: selectedIndex,
                   context: context,
                 ),
               ],

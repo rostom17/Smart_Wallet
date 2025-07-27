@@ -38,7 +38,7 @@ class _WalletScreenState extends State<WalletScreen> {
               child: Container(
                 width: double.maxFinite,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColors.whiteColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(24),
                     topRight: Radius.circular(24),
