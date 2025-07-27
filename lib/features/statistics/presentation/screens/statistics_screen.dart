@@ -64,7 +64,10 @@ class StatisticsScreen extends StatelessWidget {
                   "Top Spendig",
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
-                GestureDetector(onTap: () {}, child: Icon(Icons.swap_vert)),
+                GestureDetector(
+                  onTap: () {},
+                  child: Icon(Icons.swap_vert, color: Colors.grey.shade700),
+                ),
               ],
             ),
             const SizedBox(height: 16),
