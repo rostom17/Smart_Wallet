@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+
 import 'package:smart_wallet/core/router/app_routes.dart';
 import 'package:smart_wallet/core/constants/app_colors.dart';
 import 'package:smart_wallet/features/auth/presentation/bloc/show_password_cubit.dart';
-import 'package:smart_wallet/features/auth/presentation/widgets/google_apple_fb.dart';
+import 'package:smart_wallet/features/auth/presentation/widgets/social_login_row.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -33,18 +34,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Text(
-                    "Welcome back! Glad to see you again.!",
+                    "Welcome back.!",
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),
                 const SizedBox(height: 32),
                 _buildTextFormField(
-                  hintText: "Enter your email",
+                  hintText: "Email",
                   textEditingController: _emailController,
                 ),
                 const SizedBox(height: 20),
                 _buildTextFormField(
-                  hintText: "Enter your password",
+                  hintText: "Password",
                   textEditingController: _passwordController,
                   isPassword: true,
                 ),
@@ -67,13 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Row(
-                  children: [
-                    GoogleAppleFB(imagePath: "assets/icons/facebook.png"),
-                    GoogleAppleFB(imagePath: "assets/icons/google.png"),
-                    GoogleAppleFB(imagePath: "assets/icons/apple-logo.png"),
-                  ],
-                ),
+                SocialLoginRow(),
                 const SizedBox(height: 48),
               ],
             ),
@@ -86,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Didn't have an account?",
+              "Don't have an account?",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             TextButton(
@@ -97,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 "Register Now",
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  color: AppColors.secondaryColor,
+                  color: AppColors.primaryColor,
                 ),
               ),
             ),

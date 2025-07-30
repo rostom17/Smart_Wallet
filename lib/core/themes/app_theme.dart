@@ -7,9 +7,9 @@ class AppTheme {
       scaffoldBackgroundColor: AppColors.whiteColor,
       textTheme: TextTheme(
         headlineMedium: TextStyle(
-          fontSize: 28,
+          fontSize: 24,
           fontWeight: FontWeight.bold,
-          color: Colors.black,
+          color: Colors.grey.shade700,
         ),
         titleSmall: TextStyle(
           fontSize: 19,
@@ -20,13 +20,18 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         fillColor: Colors.grey[50],
         filled: true,
+        hintStyle: TextStyle(fontSize: 14),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: Colors.grey.shade300, width: 1.5),
+          borderSide: BorderSide(color: AppColors.primaryColor, width: .5),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: Colors.grey.shade300, width: 1.5),
+          borderSide: BorderSide(color: AppColors.primaryColor, width: 1.5),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: Colors.red, width: 1.5),
         ),
       ),
 

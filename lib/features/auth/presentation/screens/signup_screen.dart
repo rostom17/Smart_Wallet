@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:smart_wallet/core/router/app_routes.dart';
-import 'package:smart_wallet/core/constants/app_colors.dart';
+
 import 'package:smart_wallet/features/auth/presentation/bloc/show_password_cubit.dart';
-import 'package:smart_wallet/features/auth/presentation/widgets/google_apple_fb.dart';
+import 'package:smart_wallet/features/auth/presentation/widgets/signup_screen_footer.dart';
+import 'package:smart_wallet/features/auth/presentation/widgets/signup_screen_header.dart';
+import 'package:smart_wallet/features/auth/presentation/widgets/social_login_row.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -30,27 +29,7 @@ class _SignupScreenState extends State<SignupScreen> {
           child: Center(
             child: Column(
               children: [
-                SvgPicture.asset("assets/images/splash_logo.svg"),
-                const SizedBox(height: 32),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Nice to meet you",
-                        style: Theme.of(context).textTheme.headlineMedium,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        "Before we begin, we need some details.",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.grey.shade700,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                SignupScreenHeader(),
                 const SizedBox(height: 32),
                 _buildTextFormField(
                   hintText: "Username",
@@ -58,7 +37,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 const SizedBox(height: 20),
                 _buildTextFormField(
-                  hintText: "Enter your email",
+                  hintText: "Email",
                   textEditingController: _userPasswordController,
                 ),
                 const SizedBox(height: 20),
@@ -85,43 +64,14 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Row(
-                  children: [
-                    GoogleAppleFB(imagePath: "assets/icons/facebook.png"),
-                    GoogleAppleFB(imagePath: "assets/icons/google.png"),
-                    GoogleAppleFB(imagePath: "assets/icons/apple-logo.png"),
-                  ],
-                ),
+                SocialLoginRow(),
                 const SizedBox(height: 48),
               ],
             ),
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 32),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Already have an account?",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            TextButton(
-              onPressed: () {
-                context.pushNamed(AppRoutes.loginScreen);
-              },
-              child: Text(
-                "Login Now",
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.secondaryColor,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: SignupScreenFooter(),
     );
   }
 

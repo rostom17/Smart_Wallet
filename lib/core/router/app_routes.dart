@@ -17,6 +17,7 @@ class AppRoutes {
   static const String cardAndBankAccountScreen = "cardAndBankAcScreen";
 
   static GoRouter router = GoRouter(
+    initialLocation: "/",
     routes: <RouteBase>[
       GoRoute(
         path: '/',

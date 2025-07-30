@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_wallet/core/router/app_routes.dart';
+import 'package:smart_wallet/core/services/service_locator.dart';
 import 'package:smart_wallet/core/themes/app_theme.dart';
 import 'package:smart_wallet/features/auth/presentation/bloc/show_password_cubit.dart';
 import 'package:smart_wallet/features/bottom_nav/presentation/bloc/bottom_nav_cubit.dart';
@@ -12,6 +13,9 @@ import 'package:smart_wallet/features/statistics/presentation/bloc/drop_down_cub
 import 'package:smart_wallet/features/wallet/presentation/bloc/other_option_cubit.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  setupServiceLocator();
+
   runApp(SmartWallet());
 }
 
