@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:smart_wallet/core/router/app_routes.dart';
-import 'package:smart_wallet/core/constants/app_colors.dart';
-import 'package:smart_wallet/features/auth/presentation/bloc/show_password_cubit.dart';
+import 'package:smart_wallet/features/auth/presentation/widgets/custom_text_field.dart';
+import 'package:smart_wallet/features/auth/presentation/widgets/divider_widget.dart';
+import 'package:smart_wallet/features/auth/presentation/widgets/signup_screen_footer.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/social_login_row.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,8 +16,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -27,107 +27,70 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Padding(
           padding: EdgeInsets.only(top: 92, left: 24, right: 24, bottom: 20),
           child: Center(
-            child: Column(
-              children: [
-                SvgPicture.asset("assets/images/splash_logo.svg"),
-                const SizedBox(height: 32),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Text(
-                    "Welcome back.!",
-                    style: Theme.of(context).textTheme.headlineMedium,
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  SvgPicture.asset("assets/images/splash_logo.svg"),
+                  const SizedBox(height: 32),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Text(
+                      "Welcome back.!",
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 32),
-                _buildTextFormField(
-                  hintText: "Email",
-                  textEditingController: _emailController,
-                ),
-                const SizedBox(height: 20),
-                _buildTextFormField(
-                  hintText: "Password",
-                  textEditingController: _passwordController,
-                  isPassword: true,
-                ),
-                const SizedBox(height: 12),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text("Forgot Password?"),
+                  const SizedBox(height: 32),
+
+                  CustomTextField(
+                    hintText: "Email",
+                    textEditingController: _emailController,
+                    isEmail: true,
                   ),
-                ),
-                const SizedBox(height: 48),
-                ElevatedButton(onPressed: () {}, child: Text("Login")),
-                const SizedBox(height: 48),
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Or Register with",
-                    style: TextStyle(color: Colors.black),
+                  const SizedBox(height: 20),
+                  CustomTextField(
+                    hintText: "Password",
+                    textEditingController: _passwordController,
+                    isPassword: true,
                   ),
-                ),
-                const SizedBox(height: 20),
-                SocialLoginRow(),
-                const SizedBox(height: 48),
-              ],
+
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Text("Forgot Password?"),
+                    ),
+                  ),
+
+                  ElevatedButton(onPressed: () {}, child: Text("Login")),
+                  const SizedBox(height: 20),
+
+                  DividerWidget(title: "Or Login With"),
+                  const SizedBox(height: 20),
+
+                  SocialLoginRow(),
+                  const SizedBox(height: 48),
+                ],
+              ),
             ),
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(bottom: 32),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Don't have an account?",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            TextButton(
-              onPressed: () {
-                context.pushNamed(AppRoutes.signupScreen);
-              },
-              child: Text(
-                "Register Now",
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.primaryColor,
-                ),
-              ),
-            ),
-          ],
-        ),
+      bottomNavigationBar: SignupScreenFooter(
+        hintText: "Don't have an account?",
+        buttonName: "Register Now",
+        onTap: () {
+          context.pushNamed(AppRoutes.signupScreen);
+        },
       ),
     );
   }
 
-  Widget _buildTextFormField({
-    required String hintText,
-    required TextEditingController textEditingController,
-    bool isPassword = false,
-  }) {
-    return TextFormField(
-      controller: textEditingController,
-      obscureText: isPassword,
-      decoration: InputDecoration(
-        hintText: hintText,
-
-        suffixIcon: isPassword
-            ? BlocBuilder<ShowPasswordCubit, bool>(
-                builder: (context, state) {
-                  return IconButton(
-                    onPressed: () {
-                      context.read<ShowPasswordCubit>().togglePassword();
-                    },
-                    icon: Icon(
-                      state ? CupertinoIcons.eye : CupertinoIcons.eye_slash,
-                    ),
-                  );
-                },
-              )
-            : null,
-      ),
-    );
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }

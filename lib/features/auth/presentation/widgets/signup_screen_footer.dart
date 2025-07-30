@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import 'package:smart_wallet/core/constants/app_colors.dart';
-import 'package:smart_wallet/core/router/app_routes.dart';
 
 class SignupScreenFooter extends StatelessWidget {
-  const SignupScreenFooter({super.key});
+  const SignupScreenFooter({
+    super.key,
+    required this.hintText,
+    required this.buttonName,
+    required this.onTap,
+  });
+
+  final String hintText;
+  final String buttonName;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -14,16 +21,11 @@ class SignupScreenFooter extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            "Already have an account?",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+          Text(hintText, style: TextStyle(fontWeight: FontWeight.bold)),
           TextButton(
-            onPressed: () {
-              context.pushNamed(AppRoutes.loginScreen);
-            },
+            onPressed: onTap,
             child: Text(
-              "Login Now",
+              buttonName,
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 color: AppColors.primaryColor,
