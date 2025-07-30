@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_wallet/core/router/app_routes.dart';
-import 'package:smart_wallet/core/constans/app_colors.dart';
+import 'package:smart_wallet/core/constants/app_colors.dart';
 import 'package:smart_wallet/features/wallet/presentation/bloc/other_option_cubit.dart';
 
 class SelectPaymentOptionWidget extends StatefulWidget {

@@ -2,12 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
 
 import './interceptor/logger_interceptor.dart';
-import './config/network_config.dart';
+import '../constants/api_constants.dart';
 
 Dio getDioInstance() {
   BaseOptions dioOption = BaseOptions(
-    baseUrl: NetworkConfig.baseUrl,
-    connectTimeout: NetworkConfig.connectionTimeOut,
+    baseUrl: ApiConstants.baseUrl,
+    connectTimeout: ApiConstants.connectionTimeOut,
     headers: {"token": "", "content-type": "application/json"},
   );
 
@@ -18,7 +18,7 @@ Dio getDioInstance() {
     RetryInterceptor(
       dio: dio,
       retries: 2,
-      retryDelays: NetworkConfig.retryDelays,
+      retryDelays: ApiConstants.retryDelays,
     ),
     //Refresh Interceptor
   ];

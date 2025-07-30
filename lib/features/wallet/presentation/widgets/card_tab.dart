@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_wallet/core/constans/app_colors.dart';
+import 'package:smart_wallet/core/constants/app_colors.dart';
 
 class CardTab extends StatefulWidget {
   const CardTab({super.key});

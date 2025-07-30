@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_wallet/core/constans/app_colors.dart';
+import 'package:smart_wallet/core/constants/app_colors.dart';
 
 class BalanceCardWidget extends StatelessWidget {
   const BalanceCardWidget({super.key, required this.screenHeight});

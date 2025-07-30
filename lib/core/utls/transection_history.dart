@@ -1,4 +1,4 @@
-import 'package:smart_wallet/core/constans/app_strings.dart';
+import 'package:smart_wallet/core/constants/app_strings.dart';
 
 class TransectionHistory {
   static List<Map<String, dynamic>> transections = [

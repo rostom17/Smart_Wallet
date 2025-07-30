@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:smart_wallet/core/constans/app_colors.dart';
+import 'package:smart_wallet/core/constants/app_colors.dart';
 
 class BackgroundPatternWidget extends StatelessWidget {
   const BackgroundPatternWidget({super.key, required this.yourWidgetTree});

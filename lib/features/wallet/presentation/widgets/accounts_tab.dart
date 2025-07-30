@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_wallet/core/constans/app_colors.dart';
+import 'package:smart_wallet/core/constants/app_colors.dart';
 import 'package:smart_wallet/features/wallet/presentation/bloc/account_option_cubit.dart';
 
 class AccountsTab extends StatelessWidget {
