@@ -1,10 +1,16 @@
-import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
-import 'package:smart_wallet/core/services/auth_service.dart';
-
-final serviceLocator = GetIt.instance;
-
-void setupServiceLocator() {
-  serviceLocator.registerSingleton(Dio());
-  serviceLocator.registerSingleton(AuthService());
-}
+export 'package:dio/dio.dart';
+export 'package:flutter_secure_storage/flutter_secure_storage.dart';
+export 'package:get_it/get_it.dart';
+export 'package:shared_preferences/shared_preferences.dart';
+export 'package:smart_wallet/core/network/connectivity/connectivity_checker.dart';
+export 'package:smart_wallet/core/network/errors/default_error_mapper.dart';
+export 'package:smart_wallet/core/network/errors/error_mapper.dart';
+export 'package:smart_wallet/core/network/network_executor.dart';
+export 'package:smart_wallet/core/network/set_up_dio.dart';
+export 'package:smart_wallet/core/services/auth_service.dart';
+export 'package:smart_wallet/features/auth/data/data_scources/auth_remote_data_src.dart';
+export 'package:smart_wallet/features/auth/data/data_scources/auth_remote_data_src_impl.dart';
+export 'package:smart_wallet/features/auth/data/repositories/auth_repository_impl.dart';
+export 'package:smart_wallet/features/auth/domain/repositories/auth_repository.dart';
+export 'package:smart_wallet/features/auth/domain/usecases/login_usecase.dart';
+export 'package:smart_wallet/features/auth/presentation/bloc/auth_cubit.dart';

@@ -40,4 +40,7 @@ class AppStrings {
   static const lineSvg = "$_baseImagePath/line.svg";
   static const appbarPatternSvg = "$_baseImagePath/pattern.svg";
   static const splashIconSvg = "$_baseImagePath/splash_logo.svg";
+
+  static const defaultAvatarUrl =
+      "https://www.svgrepo.com/show/452030/avatar-default.svg";
 }

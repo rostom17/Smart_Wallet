@@ -20,35 +20,34 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: textEditingController,
-      obscureText: isPassword,
-      decoration: InputDecoration(
-        hintText: hintText,
-
-        suffixIcon: isPassword
-            ? BlocBuilder<ShowPasswordCubit, bool>(
-                builder: (context, state) {
-                  return IconButton(
+    return BlocBuilder<ShowPasswordCubit, bool>(
+      builder: (context, state) {
+        return TextFormField(
+          controller: textEditingController,
+          obscureText: isPassword && !state,
+          decoration: InputDecoration(
+            hintText: hintText,
+            suffixIcon: isPassword
+                ? IconButton(
                     onPressed: () {
                       context.read<ShowPasswordCubit>().togglePassword();
                     },
                     icon: Icon(
                       state ? CupertinoIcons.eye : CupertinoIcons.eye_slash,
                     ),
-                  );
-                },
-              )
-            : null,
-      ),
-      validator: (value) {
-        if (value == null || value.trim().isEmpty) {
-          return "$hintText required";
-        } else if (isEmail && !EmailChecker.emailChecker.hasMatch(value)) {
-          return "Enter valid email";
-        } else {
-          return null;
-        }
+                  )
+                : null,
+          ),
+          validator: (value) {
+            if (value == null || value.trim().isEmpty) {
+              return "$hintText required";
+            } else if (isEmail && !EmailChecker.emailChecker.hasMatch(value)) {
+              return "Enter valid email";
+            } else {
+              return null;
+            }
+          },
+        );
       },
     );
   }

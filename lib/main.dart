@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_wallet/core/router/app_routes.dart';
-import 'package:smart_wallet/core/services/service_locator.dart';
+import 'package:smart_wallet/core/services/service_locator.main.dart';
 import 'package:smart_wallet/core/themes/app_theme.dart';
+import 'package:smart_wallet/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:smart_wallet/features/auth/presentation/bloc/show_password_cubit.dart';
 import 'package:smart_wallet/features/bottom_nav/presentation/bloc/bottom_nav_cubit.dart';
 import 'package:smart_wallet/features/profile/presentation/bloc/change_profile_widget_cubit.dart';
@@ -26,6 +27,7 @@ class SmartWallet extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider<AuthCubit>(create: (_) => serviceLocator<AuthCubit>()),
         BlocProvider<BottomNavCubit>(create: (_) => BottomNavCubit()),
         BlocProvider<ShowPasswordCubit>(
           create: (_) => ShowPasswordCubit(),

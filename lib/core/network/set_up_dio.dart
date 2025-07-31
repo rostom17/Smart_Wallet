@@ -14,12 +14,12 @@ Dio getDioInstance() {
   final Dio dio = Dio(dioOption);
 
   List<Interceptor> interceptors = [
-    LoggerInterceptor(),
-    RetryInterceptor(
-      dio: dio,
-      retries: 2,
-      retryDelays: ApiConstants.retryDelays,
-    ),
+    // LoggerInterceptor(),
+    // RetryInterceptor(
+    //   dio: dio,
+    //   retries: 2,
+    //   retryDelays: ApiConstants.retryDelays,
+    // ),
     //Refresh Interceptor
   ];
 

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:smart_wallet/core/router/app_routes.dart';
+import 'package:smart_wallet/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/divider_widget.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/signup_screen_footer.dart';
@@ -19,6 +22,22 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  late final AuthCubit _authCubit;
+
+  @override
+  void initState() {
+    _authCubit = GetIt.I<AuthCubit>();
+    super.initState();
+  }
+
+  Future<void> _onLogin() async {
+    if (_formKey.currentState!.validate()) {
+      _authCubit.login(
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +82,30 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
 
-                  ElevatedButton(onPressed: () {}, child: Text("Login")),
+                  BlocConsumer<AuthCubit, AuthState>(
+                    listener: (context, state) {
+                      if (state is AuthSuccessful) {
+                        context.pushReplacementNamed(AppRoutes.bottomNavScreen);
+                      }
+                      if (state is AuthFailed) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(state.failure.errorMessage)),
+                        );
+                      }
+                    },
+                    builder: (context, state) {
+                      return ElevatedButton(
+                        onPressed: () {
+                          _onLogin();
+                        },
+                        child: state is! AuthLoading
+                            ? Text("Login")
+                            : CircularProgressIndicator.adaptive(
+                                backgroundColor: Colors.white,
+                              ),
+                      );
+                    },
+                  ),
                   const SizedBox(height: 20),
 
                   DividerWidget(title: "Or Login With"),

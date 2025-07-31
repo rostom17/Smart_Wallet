@@ -8,7 +8,7 @@ class ApiConstants {
     Duration(seconds: 2),
     Duration(seconds: 4),
   ];
-  static const baseUrl = "54.90.81.111/api/v1";
+  static const baseUrl = "http://54.90.81.111/api/v1";
 
   static const loginEndPoint = "/auth/login";
   static const signUpEndPoint = "/auth/sign-up";

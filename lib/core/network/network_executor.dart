@@ -1,5 +1,7 @@
 /// Network executor is class for handling all the network calls
 
+import 'dart:convert';
+
 import "package:dio/dio.dart";
 import 'models/network_request_model.dart';
 import 'models/network_response_model.dart';
@@ -27,7 +29,7 @@ class NetworkExecutor {
       final Response response = await dio.get(
         requestModel.path,
         queryParameters: requestModel.queryParams,
-        data: requestModel.formData,
+        data: requestModel.body,
         options: Options(headers: requestModel.headers),
       );
 
@@ -48,7 +50,7 @@ class NetworkExecutor {
       final Response response = await dio.post(
         requestModel.path,
         queryParameters: requestModel.queryParams,
-        data: requestModel.formData,
+        data: jsonEncode(requestModel.body),
         options: Options(headers: requestModel.headers),
       );
 
