@@ -63,7 +63,7 @@ class ProfileActionRows extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             _buildActonRow(
-              actionName: "Log",
+              actionName: "Logout",
               widget: Icon(Icons.logout),
               onTap: () {},
             ),
