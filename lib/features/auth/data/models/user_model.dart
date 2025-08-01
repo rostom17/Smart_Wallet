@@ -19,6 +19,13 @@ class UserModel implements BaseModel<UserEntity> {
     );
   }
 
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'email': email,
+    'fullName': fullName,
+    'avatarUrl': avatarUrl,
+  };
+
   @override
   UserEntity toEntity() {
     return UserEntity(

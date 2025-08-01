@@ -3,7 +3,7 @@ import 'package:smart_wallet/features/add_expense/presentation/screens/add_expen
 import 'package:smart_wallet/features/auth/presentation/screens/login_screen.dart';
 import 'package:smart_wallet/features/auth/presentation/screens/signup_screen.dart';
 import 'package:smart_wallet/features/bottom_nav/presentation/screens/bottom_nav_screen.dart';
-import 'package:smart_wallet/features/splash_screen/presentation/splash_screen.dart';
+import 'package:smart_wallet/features/auth/presentation/screens/splash_screen.dart';
 import 'package:smart_wallet/features/wallet/presentation/screens/cards_and_bank_account_screen.dart';
 import 'package:smart_wallet/features/wallet/presentation/screens/wallet_screen.dart';
 

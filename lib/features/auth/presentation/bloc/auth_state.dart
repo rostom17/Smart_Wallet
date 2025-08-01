@@ -1,6 +1,6 @@
 
 
-part of 'auth_cubit.dart';
+part of 'login_cubit.dart';
 
 sealed class AuthState {}
 

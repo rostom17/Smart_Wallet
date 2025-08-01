@@ -13,4 +13,4 @@ export 'package:smart_wallet/features/auth/data/data_scources/auth_remote_data_s
 export 'package:smart_wallet/features/auth/data/repositories/auth_repository_impl.dart';
 export 'package:smart_wallet/features/auth/domain/repositories/auth_repository.dart';
 export 'package:smart_wallet/features/auth/domain/usecases/login_usecase.dart';
-export 'package:smart_wallet/features/auth/presentation/bloc/auth_cubit.dart';
+export 'package:smart_wallet/features/auth/presentation/bloc/login_cubit.dart';

@@ -85,10 +85,6 @@ class ProfileScreen extends StatelessWidget {
                               scale: animation,
                               child: child,
                             );
-                            // return FadeTransition(
-                            //   opacity: animation,
-                            //   child: child,
-                            // );
                           },
                       child: widgetScreen[index],
                     ),

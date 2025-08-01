@@ -1,36 +1,72 @@
 import 'package:dartz/dartz.dart';
+import 'package:smart_wallet/features/auth/data/data_scources/auth_local_data_src.dart';
 import 'package:smart_wallet/features/auth/data/data_scources/auth_remote_data_src.dart';
+import 'package:smart_wallet/features/auth/data/models/login_request_model.dart';
+import 'package:smart_wallet/features/auth/data/models/signup_request_model.dart';
+import 'package:smart_wallet/features/auth/domain/entities/auth_entity.dart';
 import 'package:smart_wallet/features/auth/domain/entities/user_entity.dart';
 import 'package:smart_wallet/features/auth/domain/repositories/auth_repository.dart';
 import 'package:smart_wallet/features/common/domain/entities/api_error.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSrc authRemoteDataSrc;
+  final AuthLocalDataSrc authLocalDataSrc;
 
-  AuthRepositoryImpl({required this.authRemoteDataSrc});
+  AuthRepositoryImpl({
+    required this.authRemoteDataSrc,
+    required this.authLocalDataSrc,
+  });
 
   @override
-  Future<Either<ApiError, UserEntity>> login({
-    required String email,
-    required String password,
+  Future<Either<ApiError, AuthEntity>> login({
+    required LoginRequestModel loginRequestModel,
   }) async {
-    final respponse = await authRemoteDataSrc.login(
-      email: email,
-      password: password,
+    final response = await authRemoteDataSrc.login(
+      loginRequestModel: loginRequestModel,
     );
-    return respponse.fold(
-      (error) => Left(error),
-      (user) => Right(user.toEntity()),
+    return response.fold(
+      (error) {
+        return Left(error);
+      },
+      (authModel) {
+        authLocalDataSrc.saveAuthToken(authModel.accessTokenModel);
+        authLocalDataSrc.saveUserData(authModel.userModel);
+        return Right(authModel.toEntity());
+      },
     );
   }
 
   @override
-  Future<Either<ApiError, UserEntity>> signup({
-    required String name,
-    required String email,
-    required String password,
+  Future<bool> isLoggedIn() async {
+    final authToken = await authLocalDataSrc.getAuthToken();
+    if (authToken == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  @override
+  Future<Either<ApiError, void>> logout() {
+    // TODO: implement logout
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<ApiError, AuthEntity>> signup({
+    required SignupRequestModel signupRequestModel,
   }) {
     // TODO: implement signup
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<ApiError, UserEntity>> fetchUserData() async {
+    print("fetching user repository implemnt is wokring");
+    final userModel = await authLocalDataSrc.getUserData();
+    if (userModel == null) {
+      return Left(ApiError(errorMessage: "You are no Logged In"));
+    }
+    return Right(userModel.toEntity());
   }
 }

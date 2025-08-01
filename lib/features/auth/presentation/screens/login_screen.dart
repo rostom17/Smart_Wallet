@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:smart_wallet/core/router/app_routes.dart';
-import 'package:smart_wallet/features/auth/presentation/bloc/auth_cubit.dart';
+import 'package:smart_wallet/features/auth/presentation/bloc/login_cubit.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/divider_widget.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/signup_screen_footer.dart';
@@ -22,17 +22,17 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  late final AuthCubit _authCubit;
+  late final LoginCubit _loginCubit;
 
   @override
   void initState() {
-    _authCubit = GetIt.I<AuthCubit>();
+    _loginCubit = GetIt.I<LoginCubit>();
     super.initState();
   }
 
   Future<void> _onLogin() async {
     if (_formKey.currentState!.validate()) {
-      _authCubit.login(
+      _loginCubit.login(
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
 
-                  BlocConsumer<AuthCubit, AuthState>(
+                  BlocConsumer<LoginCubit, AuthState>(
                     listener: (context, state) {
                       if (state is AuthSuccessful) {
                         context.pushReplacementNamed(AppRoutes.bottomNavScreen);

@@ -5,8 +5,8 @@ import 'package:smart_wallet/features/common/domain/entities/api_error.dart';
 
 part 'auth_state.dart';
 
-class AuthCubit extends Cubit<AuthState> {
-  AuthCubit({required this.lgoinUseCase}) : super(AuthInitial());
+class LoginCubit extends Cubit<AuthState> {
+  LoginCubit({required this.lgoinUseCase}) : super(AuthInitial());
 
   final LoginUseCase lgoinUseCase;
 
@@ -21,7 +21,7 @@ class AuthCubit extends Cubit<AuthState> {
       (failure) => emit(
         AuthFailed(failure: ApiError(errorMessage: failure.errorMessage)),
       ),
-      (user) => emit(AuthSuccessful(user: user)),
+      (user) => emit(AuthSuccessful(user: user.userEntity)),
     );
   }
 }
