@@ -4,12 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:smart_wallet/core/router/app_routes.dart';
 import 'package:smart_wallet/features/common/widgets/background_pattern_widget.dart';
 import 'package:smart_wallet/features/common/widgets/notification_widget.dart';
-import 'package:smart_wallet/features/wallet/presentation/bloc/account_option_cubit.dart';
+import 'package:smart_wallet/features/wallet/presentation/bloc/account_selector_cubit.dart';
 import 'package:smart_wallet/features/wallet/presentation/bloc/tab_index_cubit.dart';
 import 'package:smart_wallet/features/wallet/presentation/widgets/custom_tabbar_widget.dart';
 
-class CardsAndBankAccountScreen extends StatelessWidget {
-  const CardsAndBankAccountScreen({super.key, required this.selectedIndex});
+class PaymentMethodScreen extends StatelessWidget {
+  const PaymentMethodScreen({super.key, required this.selectedIndex});
 
   final int selectedIndex;
 
@@ -20,8 +20,8 @@ class CardsAndBankAccountScreen extends StatelessWidget {
         BlocProvider<TabIndexCubit>(
           create: (context) => TabIndexCubit(selectedIndex: selectedIndex),
         ),
-        BlocProvider<AccountOptionCubit>(
-          create: (context) => AccountOptionCubit(),
+        BlocProvider<AccountSelectorCubit>(
+          create: (context) => AccountSelectorCubit(),
         ),
       ],
       child: BackgroundPatternWidget(

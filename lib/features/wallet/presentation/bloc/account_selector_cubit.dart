@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AccountOptionCubit extends Cubit <int?>{
-  AccountOptionCubit() : super(2);
+class AccountSelectorCubit extends Cubit<int?> {
+  AccountSelectorCubit() : super(null);
 
   void onSelectBankLink() {
     emit(0);

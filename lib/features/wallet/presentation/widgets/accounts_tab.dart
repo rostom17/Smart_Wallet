@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_wallet/core/constants/app_colors.dart';
-import 'package:smart_wallet/features/wallet/presentation/bloc/account_option_cubit.dart';
+import 'package:smart_wallet/features/wallet/presentation/bloc/account_selector_cubit.dart';
 
 class AccountsTab extends StatelessWidget {
   const AccountsTab({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AccountOptionCubit, int?>(
+    return BlocBuilder<AccountSelectorCubit, int?>(
       builder: (context, selectedIndex) {
         return Column(
           children: [
@@ -47,9 +47,9 @@ class AccountsTab extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (index == 0) {
-          context.read<AccountOptionCubit>().onSelectBankLink();
+          context.read<AccountSelectorCubit>().onSelectBankLink();
         } else if (index == 1) {
-          context.read<AccountOptionCubit>().onSelectPaypal();
+          context.read<AccountSelectorCubit>().onSelectPaypal();
         }
       },
       child: AnimatedContainer(
@@ -119,9 +119,9 @@ class AccountsTab extends StatelessWidget {
                 value: isSelected,
                 onChanged: (val) {
                   if (index == 0) {
-                    context.read<AccountOptionCubit>().onSelectBankLink();
+                    context.read<AccountSelectorCubit>().onSelectBankLink();
                   } else if (index == 1) {
-                    context.read<AccountOptionCubit>().onSelectPaypal();
+                    context.read<AccountSelectorCubit>().onSelectPaypal();
                   }
                 },
               ),

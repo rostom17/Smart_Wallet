@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class OtherOptionCubit extends Cubit<bool> {
-  OtherOptionCubit() : super(false);
+class SelectOtherCubit extends Cubit<bool> {
+  SelectOtherCubit() : super(false);
 
-  void shoeOtherAmountInput() {
+  void showOtherAmountInput() {
     emit(true);
   }
 

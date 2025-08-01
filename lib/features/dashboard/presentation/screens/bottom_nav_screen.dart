@@ -4,10 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:smart_wallet/core/router/app_routes.dart';
 
 import 'package:smart_wallet/core/constants/app_colors.dart';
-import 'package:smart_wallet/features/bottom_nav/presentation/bloc/bottom_nav_cubit.dart';
-import 'package:smart_wallet/features/home/presentation/screens/home_screen.dart';
+import 'package:smart_wallet/features/dashboard/presentation/bloc/bottom_nav_cubit.dart';
+import 'package:smart_wallet/features/expense/presentation/screens/home_screen.dart';
 import 'package:smart_wallet/features/profile/presentation/screens/profile_screen.dart';
-import 'package:smart_wallet/features/statistics/presentation/screens/statistics_screen.dart';
+import 'package:smart_wallet/features/expense/presentation/screens/statistics_screen.dart';
 import 'package:smart_wallet/features/wallet/presentation/screens/wallet_screen.dart';
 
 class BottomNavScreen extends StatelessWidget {
@@ -16,7 +16,7 @@ class BottomNavScreen extends StatelessWidget {
   final List<Widget> _pages = [
     HomeScreen(),
     StatisticsScreen(),
-    WalletScreen(),
+    CardScreen(),
     ProfileScreen(),
   ];
 

@@ -47,9 +47,13 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<ApiError, void>> logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<Either<ApiError, void>> logout() async {
+    try {
+      await authLocalDataSrc.clearSavedData();
+      return const Right(null);
+    } catch (e) {
+      return Left(ApiError(errorMessage: "$e"));
+    }
   }
 
   @override

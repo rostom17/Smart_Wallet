@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_wallet/core/constants/app_colors.dart';
-import 'package:smart_wallet/features/statistics/presentation/bloc/choose_day_month_year_cubit.dart';
+import 'package:smart_wallet/features/expense/presentation/bloc/time_period_selector_cubit.dart';
 
-class DayWeekMonthWidget extends StatelessWidget {
-  const DayWeekMonthWidget({super.key});
+class TimePeriodSelector extends StatelessWidget {
+  const TimePeriodSelector({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ChooseDayMonthYearCubit, int>(
+    return BlocBuilder<TimePeriodSelectorCubit, int>(
       builder: (context, selectedIndex) {
         return Row(
           children: [
@@ -55,7 +55,7 @@ class DayWeekMonthWidget extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(12),
       onTap: () {
-        context.read<ChooseDayMonthYearCubit>().onChangedIndex(index);
+        context.read<TimePeriodSelectorCubit>().onChangedIndex(index);
       },
       child: AnimatedContainer(
         duration: Duration(milliseconds: 700),

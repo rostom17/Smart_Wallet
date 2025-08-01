@@ -1,5 +1,5 @@
 import 'package:smart_wallet/features/auth/presentation/bloc/show_password_cubit.dart';
-import 'package:smart_wallet/features/bottom_nav/presentation/bloc/bottom_nav_cubit.dart';
+import 'package:smart_wallet/features/dashboard/presentation/bloc/bottom_nav_cubit.dart';
 import 'package:smart_wallet/features/common/bloc/transection_card_index_cubit.dart';
 
 import 'service_locator.dart';

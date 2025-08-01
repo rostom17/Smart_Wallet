@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_wallet/core/router/app_routes.dart';
 import 'package:smart_wallet/core/constants/app_colors.dart';
-import 'package:smart_wallet/features/wallet/presentation/bloc/other_option_cubit.dart';
+import 'package:smart_wallet/features/wallet/presentation/bloc/select_other_cubit.dart';
 
 class SelectPaymentOptionWidget extends StatefulWidget {
   const SelectPaymentOptionWidget({super.key});
@@ -30,7 +30,7 @@ class _SelectPaymentOptionWidgetState extends State<SelectPaymentOptionWidget> {
         ),
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: BlocBuilder<OtherOptionCubit, bool>(
+          child: BlocBuilder<SelectOtherCubit, bool>(
             builder: (context, state) {
               return Column(
                 spacing: 10,
@@ -63,7 +63,7 @@ class _SelectPaymentOptionWidgetState extends State<SelectPaymentOptionWidget> {
                     name: "Others",
                     imagePath: "assets/icons/cash.png",
                     onTap: () {
-                      context.read<OtherOptionCubit>().shoeOtherAmountInput();
+                      context.read<SelectOtherCubit>().showOtherAmountInput();
                     },
                   ),
                   const SizedBox(height: 10),
@@ -136,7 +136,7 @@ class _SelectPaymentOptionWidgetState extends State<SelectPaymentOptionWidget> {
               buttonName: "Cancel",
               isCancel: true,
               onPressed: () {
-                context.read<OtherOptionCubit>().hideOtherAmountInput();
+                context.read<SelectOtherCubit>().hideOtherAmountInput();
                 _amountController.clear();
               },
             ),

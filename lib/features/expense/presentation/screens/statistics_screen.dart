@@ -1,31 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:smart_wallet/core/utls/month_names.dart';
 import 'package:smart_wallet/core/utls/transection_history.dart';
 import 'package:smart_wallet/features/common/widgets/transection_card_widget.dart';
-import 'package:smart_wallet/features/statistics/presentation/widgets/day_week_month_widget.dart';
-import 'package:smart_wallet/features/statistics/presentation/widgets/dropdown_button_widget.dart';
+import 'package:smart_wallet/features/expense/presentation/widgets/time_period_selector.dart';
+import 'package:smart_wallet/features/expense/presentation/widgets/dropdown_button_widget.dart';
 
-import 'package:smart_wallet/features/statistics/presentation/widgets/statistics_appbar.dart';
+import 'package:smart_wallet/features/expense/presentation/widgets/statistics_appbar.dart';
 
 class StatisticsScreen extends StatelessWidget {
   const StatisticsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final List<String> monthNames = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
     return Padding(
       padding: const EdgeInsets.only(top: 80, left: 24, right: 24),
       child: SingleChildScrollView(
@@ -33,7 +20,7 @@ class StatisticsScreen extends StatelessWidget {
           children: [
             StatisticsAppbar(),
             const SizedBox(height: 28),
-            DayWeekMonthWidget(),
+            TimePeriodSelector(),
             const SizedBox(height: 20),
             DropdownButtonWidget(),
             const SizedBox(height: 20),
@@ -46,7 +33,7 @@ class StatisticsScreen extends StatelessWidget {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: monthNames
+                children: MonthNames.monthNames
                     .map(
                       (month) => Padding(
                         padding: const EdgeInsets.only(right: 12),
