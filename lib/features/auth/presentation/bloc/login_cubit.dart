@@ -12,17 +12,19 @@ class LoginCubit extends Cubit<AuthState> {
   final LoginUseCase lgoinUseCase;
 
   Future<void> login({required String email, required String password}) async {
-    emit(AuthLoading());
+    try {
+      emit(AuthLoading());
 
-    final result = await lgoinUseCase.call(
-      UserLoginParameters(email: email, password: password),
-    );
+      final result = await lgoinUseCase.call(
+        UserLoginParameters(email: email, password: password),
+      );
 
-    result.fold(
-      (failure) => emit(
-        AuthFailed(failure: ApiError(errorMessage: failure.errorMessage)),
-      ),
-      (user) => emit(AuthSuccessful(user: user.userEntity)),
-    );
+      result.fold(
+        (failure) => emit(AuthFailed(failure: failure)),
+        (user) => emit(AuthSuccessful(user: user.userEntity)),
+      );
+    } catch (e) {
+      emit(AuthFailed(failure: ApiError(errorMessage: e.toString())));
+    }
   }
 }

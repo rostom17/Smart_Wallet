@@ -22,17 +22,10 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  late final LoginCubit _loginCubit;
-
-  @override
-  void initState() {
-    _loginCubit = GetIt.I<LoginCubit>();
-    super.initState();
-  }
 
   Future<void> _onLogin() async {
     if (_formKey.currentState!.validate()) {
-      _loginCubit.login(
+      context.read<LoginCubit>().login(
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
@@ -86,8 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     listener: (context, state) {
                       if (state is AuthSuccessful) {
                         context.pushReplacementNamed(AppRoutes.bottomNavScreen);
-                      }
-                      if (state is AuthFailed) {
+                      } else if (state is AuthFailed) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(state.failure.errorMessage)),
                         );
@@ -96,13 +88,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     builder: (context, state) {
                       return ElevatedButton(
                         onPressed: () {
-                          _onLogin();
+                          if (state is! AuthLoading) {
+                            _onLogin();
+                          }
                         },
-                        child: state is! AuthLoading
-                            ? Text("Login")
-                            : CircularProgressIndicator.adaptive(
+                        child: state is AuthLoading
+                            ? CircularProgressIndicator.adaptive(
                                 backgroundColor: Colors.white,
-                              ),
+                              )
+                            : Text("Login"),
                       );
                     },
                   ),

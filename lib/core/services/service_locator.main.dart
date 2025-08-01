@@ -1,6 +1,4 @@
-import 'package:smart_wallet/features/auth/presentation/bloc/show_password_cubit.dart';
-import 'package:smart_wallet/features/dashboard/presentation/bloc/bottom_nav_cubit.dart';
-import 'package:smart_wallet/features/common/bloc/transection_card_index_cubit.dart';
+
 
 import 'service_locator.dart';
 
@@ -41,11 +39,22 @@ Future<void> setupServiceLocator() async {
       sharedPreferences: serviceLocator(),
     ),
   );
+  serviceLocator.registerLazySingleton<ProfileLocalDataSrc>(
+    () => ProfileLocalDataSrcImpl(
+      secureStorage: serviceLocator<FlutterSecureStorage>(),
+      sharedPreferences: serviceLocator(),
+    ),
+  );
+
+  //repositories
   serviceLocator.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(
       authRemoteDataSrc: serviceLocator(),
       authLocalDataSrc: serviceLocator(),
     ),
+  );
+  serviceLocator.registerLazySingleton<ProfileRepository>(
+    () => ProfileRepositoryImpl(localDataSrc: serviceLocator()),
   );
 
   //UseCases
@@ -57,6 +66,9 @@ Future<void> setupServiceLocator() async {
   );
   serviceLocator.registerLazySingleton(
     () => GetCurrentUserUsecase(authRepository: serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(
+    () => LogoutUsecase(profileRepository: serviceLocator()),
   );
 
   //Cubits
@@ -73,5 +85,8 @@ Future<void> setupServiceLocator() async {
   serviceLocator.registerFactory<ShowPasswordCubit>(() => ShowPasswordCubit());
   serviceLocator.registerFactory<TransectionCardIndexCubit>(
     () => TransectionCardIndexCubit(),
+  );
+  serviceLocator.registerFactory<LogoutCubit>(
+    () => LogoutCubit(logoutUsecase: serviceLocator<LogoutUsecase>()),
   );
 }

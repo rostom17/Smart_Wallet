@@ -1,12 +1,13 @@
 import 'dart:convert';
 
+import 'package:smart_wallet/core/constants/app_secrets.dart';
 import 'package:smart_wallet/core/services/service_locator.dart';
 import 'package:smart_wallet/features/auth/data/models/access_token_model.dart';
 import 'package:smart_wallet/features/auth/data/models/user_model.dart';
 
 class AuthLocalDataSrcImpl implements AuthLocalDataSrc {
-  static const String accessTokenKey = "access-token";
-  static const String userDataKey = "user-data";
+  static const String accessTokenKey = AppSecrets.accessTokenKey;
+  static const String userDataKey = AppSecrets.userDataKey;
 
   final FlutterSecureStorage secureStorage;
   final SharedPreferences sharedPreferences;
@@ -18,7 +19,7 @@ class AuthLocalDataSrcImpl implements AuthLocalDataSrc {
 
   @override
   Future<void> clearSavedData() async {
-    await secureStorage.delete(key: userDataKey);
+    await secureStorage.delete(key: accessTokenKey);
     await sharedPreferences.remove(userDataKey);
   }
 
@@ -29,9 +30,9 @@ class AuthLocalDataSrcImpl implements AuthLocalDataSrc {
 
   @override
   Future<UserModel?> getUserData() async {
-    final jsonString = sharedPreferences.getString(userDataKey);
-    if (jsonString == null) return null;
     try {
+      final jsonString = sharedPreferences.getString(userDataKey);
+      if (jsonString == null) return null;
       final user = jsonDecode(jsonString);
       return UserModel.fromJson(user);
     } catch (e) {

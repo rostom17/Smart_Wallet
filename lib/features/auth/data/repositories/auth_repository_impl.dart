@@ -66,7 +66,6 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<ApiError, UserEntity>> fetchUserData() async {
-    print("fetching user repository implemnt is wokring");
     final userModel = await authLocalDataSrc.getUserData();
     if (userModel == null) {
       return Left(ApiError(errorMessage: "You are no Logged In"));

@@ -57,7 +57,7 @@ class NetworkExecutor {
       return NetworkResponseModel(
         statusCode: response.statusCode,
         bodyData: response.data,
-        message: response.statusMessage ?? "No Message",
+        message: response.statusMessage ?? "${response.statusCode}",
       );
     } catch (e) {
       return errorMapper.mapError(e as Exception);

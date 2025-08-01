@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:smart_wallet/core/router/app_routes.dart';
 import 'package:smart_wallet/features/profile/presentation/bloc/change_profile_widget_cubit.dart';
+import 'package:smart_wallet/features/profile/presentation/bloc/logout_cubit.dart';
 
 class ProfileActionRows extends StatelessWidget {
   const ProfileActionRows({super.key});
@@ -62,10 +65,24 @@ class ProfileActionRows extends StatelessWidget {
               onTap: () {},
             ),
             const SizedBox(height: 4),
-            _buildActonRow(
-              actionName: "Logout",
-              widget: Icon(Icons.logout),
-              onTap: () {},
+            BlocConsumer<LogoutCubit, LogoutState>(
+              listener: (context, state) {
+                if (state is LogoutSuccess) {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text("Logout Successful")));
+                  context.pushReplacementNamed(AppRoutes.loginScreen);
+                }
+              },
+              builder: (context, state) {
+                return _buildActonRow(
+                  actionName: "Logout",
+                  widget: Icon(Icons.logout),
+                  onTap: () {
+                    context.read<LogoutCubit>().logout();
+                  },
+                );
+              },
             ),
           ],
         ),

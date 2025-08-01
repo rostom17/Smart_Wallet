@@ -6,6 +6,7 @@ import 'package:smart_wallet/features/auth/presentation/bloc/login_cubit.dart';
 import 'package:smart_wallet/features/auth/presentation/bloc/show_password_cubit.dart';
 import 'package:smart_wallet/features/dashboard/presentation/bloc/bottom_nav_cubit.dart';
 import 'package:smart_wallet/features/profile/presentation/bloc/change_profile_widget_cubit.dart';
+import 'package:smart_wallet/features/profile/presentation/bloc/logout_cubit.dart';
 import 'package:smart_wallet/features/profile/presentation/bloc/show_password_cubit.dart';
 import 'package:smart_wallet/features/common/bloc/transection_card_index_cubit.dart';
 import 'package:smart_wallet/features/expense/presentation/bloc/time_period_selector_cubit.dart';
@@ -20,6 +21,11 @@ class AppBlocProviders {
 
     BlocProvider<LoginCubit>(
       create: (_) => serviceLocator<LoginCubit>(),
+      lazy: true,
+    ),
+
+    BlocProvider<LogoutCubit>(
+      create: (_) => serviceLocator<LogoutCubit>(),
       lazy: true,
     ),
 

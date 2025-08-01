@@ -37,9 +37,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return Right(AuthModel.fromJson(response.bodyData));
     } else {
-      return Left(
-        ApiError(errorMessage: "${response.statusCode}: ${response.message}"),
-      );
+      return Left(ApiError(errorMessage: response.message));
     }
   }
 }
