@@ -1,8 +1,6 @@
-import 'package:smart_wallet/features/auth/data/data_scources/auth_local_data_src.dart';
-import 'package:smart_wallet/features/auth/data/data_scources/auth_local_data_src_impl.dart';
-import 'package:smart_wallet/features/auth/domain/usecases/check_auth_status_usecase.dart';
-import 'package:smart_wallet/features/auth/domain/usecases/get_current_user_usecase.dart';
-import 'package:smart_wallet/features/auth/presentation/bloc/check_auth_status_cubit.dart';
+import 'package:smart_wallet/features/auth/presentation/bloc/show_password_cubit.dart';
+import 'package:smart_wallet/features/bottom_nav/presentation/bloc/bottom_nav_cubit.dart';
+import 'package:smart_wallet/features/common/bloc/transection_card_index_cubit.dart';
 
 import 'service_locator.dart';
 
@@ -10,8 +8,8 @@ final serviceLocator = GetIt.instance;
 
 Future<void> setupServiceLocator() async {
   //local storeage
-  serviceLocator.registerLazySingleton(
-    () => FlutterSecureStorage(
+  serviceLocator.registerSingleton(
+    FlutterSecureStorage(
       aOptions: AndroidOptions(encryptedSharedPreferences: true),
       iOptions: IOSOptions(
         accessibility: KeychainAccessibility.first_unlock_this_device,
@@ -19,13 +17,12 @@ Future<void> setupServiceLocator() async {
     ),
   );
   final sharedPref = await SharedPreferences.getInstance();
-  serviceLocator.registerLazySingleton(() => sharedPref);
+  serviceLocator.registerSingleton(sharedPref);
 
-  //network clinet
+  //network management
   serviceLocator.registerSingleton(getDioInstance());
   serviceLocator.registerSingleton(ConnectivityChecker());
   serviceLocator.registerSingleton<ErrorMapper>(DefaultErrorMapper());
-  serviceLocator.registerSingleton(AuthService());
   serviceLocator.registerSingleton(
     NetworkExecutor(
       dio: serviceLocator<Dio>(),
@@ -34,13 +31,13 @@ Future<void> setupServiceLocator() async {
     ),
   );
 
-  //data srouce implement
+  //data srouce implementation
   serviceLocator.registerLazySingleton<AuthRemoteDataSrc>(
     () => AuthRemoteDataSrcImpl(networkExecutor: serviceLocator()),
   );
-  serviceLocator.registerSingleton<AuthLocalDataSrc>(
-    AuthLocalDataSrcImpl(
-      secureStorage: serviceLocator(),
+  serviceLocator.registerLazySingleton<AuthLocalDataSrc>(
+    () => AuthLocalDataSrcImpl(
+      secureStorage: serviceLocator<FlutterSecureStorage>(),
       sharedPreferences: serviceLocator(),
     ),
   );
@@ -63,13 +60,18 @@ Future<void> setupServiceLocator() async {
   );
 
   //Cubits
-  serviceLocator.registerFactory<LoginCubit>(
-    () => LoginCubit(lgoinUseCase: serviceLocator<LoginUseCase>()),
-  );
   serviceLocator.registerFactory<CheckAuthStatusCubit>(
     () => CheckAuthStatusCubit(
       checkAuthStatusUsecase: serviceLocator<CheckAuthStatusUsecase>(),
       getCurrentUserUsecase: serviceLocator<GetCurrentUserUsecase>(),
     ),
+  );
+  serviceLocator.registerFactory<LoginCubit>(
+    () => LoginCubit(lgoinUseCase: serviceLocator<LoginUseCase>()),
+  );
+  serviceLocator.registerFactory<BottomNavCubit>(() => BottomNavCubit());
+  serviceLocator.registerFactory<ShowPasswordCubit>(() => ShowPasswordCubit());
+  serviceLocator.registerFactory<TransectionCardIndexCubit>(
+    () => TransectionCardIndexCubit(),
   );
 }

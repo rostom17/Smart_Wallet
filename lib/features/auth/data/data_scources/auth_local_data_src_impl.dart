@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:smart_wallet/core/services/service_locator.dart';
-import 'package:smart_wallet/features/auth/data/data_scources/auth_local_data_src.dart';
 import 'package:smart_wallet/features/auth/data/models/access_token_model.dart';
 import 'package:smart_wallet/features/auth/data/models/user_model.dart';
 

@@ -14,7 +14,7 @@ class LoginUseCase
 
   @override
   Future<Either<ApiError, AuthEntity>> call(UserLoginParameters params) async {
-    print("2. login usecase mehtod");
+    
     return await authRepository.login(
       loginRequestModel: LoginRequestModel(
         email: params.email,

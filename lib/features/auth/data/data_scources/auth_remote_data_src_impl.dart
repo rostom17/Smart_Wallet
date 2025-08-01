@@ -1,6 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:smart_wallet/core/constants/api_constants.dart';
 import 'package:smart_wallet/core/network/models/network_request_model.dart';
@@ -28,7 +26,6 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
   Future<Either<ApiError, AuthModel>> login({
     required LoginRequestModel loginRequestModel,
   }) async {
-    print("4. auth remote data src impl method");
     final formData = {
       "email": loginRequestModel.email,
       "password": loginRequestModel.password,
@@ -38,7 +35,6 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print(response.bodyData["accessToken"]);
       return Right(AuthModel.fromJson(response.bodyData));
     } else {
       return Left(
