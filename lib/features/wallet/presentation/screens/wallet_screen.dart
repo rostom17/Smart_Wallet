@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:smart_wallet/core/constants/app_colors.dart';
 import 'package:smart_wallet/features/bottom_nav/presentation/bloc/bottom_nav_cubit.dart';
-import 'package:smart_wallet/features/shared/widgets/background_pattern_widget.dart';
-import 'package:smart_wallet/features/shared/widgets/custom_app_bar.dart';
+import 'package:smart_wallet/features/common/widgets/background_pattern_widget.dart';
+import 'package:smart_wallet/features/common/widgets/custom_app_bar.dart';
 import 'package:smart_wallet/features/wallet/presentation/widgets/select_option_widget.dart';
 
 class WalletScreen extends StatefulWidget {

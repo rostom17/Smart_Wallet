@@ -1,6 +1,6 @@
 import 'package:smart_wallet/core/constants/app_strings.dart';
 import 'package:smart_wallet/features/auth/domain/entities/user_entity.dart';
-import 'package:smart_wallet/features/shared/data/base_model.dart';
+import 'package:smart_wallet/features/common/data/base_model.dart';
 
 class UserModel implements BaseModel<UserEntity> {
   final int? id;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smart_wallet/core/utls/transection_history.dart';
-import 'package:smart_wallet/features/shared/widgets/transection_card_widget.dart';
+import 'package:smart_wallet/features/common/widgets/transection_card_widget.dart';
 import 'package:smart_wallet/features/statistics/presentation/widgets/day_week_month_widget.dart';
 import 'package:smart_wallet/features/statistics/presentation/widgets/dropdown_button_widget.dart';
 

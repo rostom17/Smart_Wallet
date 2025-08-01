@@ -6,8 +6,8 @@ import 'package:smart_wallet/features/profile/presentation/bloc/change_profile_w
 import 'package:smart_wallet/features/profile/presentation/widgets/profile_action_rows.dart';
 import 'package:smart_wallet/features/profile/presentation/widgets/profile_info_widget.dart';
 import 'package:smart_wallet/features/profile/presentation/widgets/update_profile.dart';
-import 'package:smart_wallet/features/shared/widgets/background_pattern_widget.dart';
-import 'package:smart_wallet/features/shared/widgets/custom_app_bar.dart';
+import 'package:smart_wallet/features/common/widgets/background_pattern_widget.dart';
+import 'package:smart_wallet/features/common/widgets/custom_app_bar.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});

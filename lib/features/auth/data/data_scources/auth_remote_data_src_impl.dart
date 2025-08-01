@@ -8,7 +8,7 @@ import 'package:smart_wallet/core/network/models/network_response_model.dart';
 import 'package:smart_wallet/core/network/network_executor.dart';
 import 'package:smart_wallet/features/auth/data/data_scources/auth_remote_data_src.dart';
 import 'package:smart_wallet/features/auth/data/models/user_model.dart';
-import 'package:smart_wallet/features/shared/domain/entities/api_error.dart';
+import 'package:smart_wallet/features/common/domain/entities/api_error.dart';
 
 class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
   final NetworkExecutor networkExecutor;

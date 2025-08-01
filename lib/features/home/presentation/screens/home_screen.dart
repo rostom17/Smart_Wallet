@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:smart_wallet/features/home/presentation/widgets/balance_card_widget.dart';
-import 'package:smart_wallet/features/shared/widgets/transection_card_widget.dart';
-import 'package:smart_wallet/features/shared/widgets/background_pattern_widget.dart';
-import 'package:smart_wallet/features/shared/widgets/notification_widget.dart';
+import 'package:smart_wallet/features/common/widgets/transection_card_widget.dart';
+import 'package:smart_wallet/features/common/widgets/background_pattern_widget.dart';
+import 'package:smart_wallet/features/common/widgets/notification_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

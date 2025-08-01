@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:smart_wallet/features/auth/data/data_scources/auth_remote_data_src.dart';
 import 'package:smart_wallet/features/auth/domain/entities/user_entity.dart';
 import 'package:smart_wallet/features/auth/domain/repositories/auth_repository.dart';
-import 'package:smart_wallet/features/shared/domain/entities/api_error.dart';
+import 'package:smart_wallet/features/common/domain/entities/api_error.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSrc authRemoteDataSrc;

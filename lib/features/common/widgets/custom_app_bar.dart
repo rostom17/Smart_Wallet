@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_wallet/features/shared/widgets/notification_widget.dart';
+import 'package:smart_wallet/features/common/widgets/notification_widget.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({

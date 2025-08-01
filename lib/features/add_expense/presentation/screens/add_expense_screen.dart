@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:smart_wallet/core/constants/app_colors.dart';
-import 'package:smart_wallet/features/shared/widgets/background_pattern_widget.dart';
+import 'package:smart_wallet/features/common/widgets/background_pattern_widget.dart';
 
 class AddExpenseScreen extends StatefulWidget {
   const AddExpenseScreen({super.key});
