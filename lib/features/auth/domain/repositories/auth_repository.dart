@@ -15,8 +15,6 @@ abstract class AuthRepository {
     required SignupRequestModel signupRequestModel,
   });
 
-  Future<Either<ApiError, void>> logout();
-
   Future<Either<ApiError, UserEntity>> fetchUserData();
 
   Future<bool> isLoggedIn();

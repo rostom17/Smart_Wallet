@@ -37,6 +37,20 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<Either<ApiError, AuthEntity>> signup({
+    required SignupRequestModel signupRequestModel,
+  }) async {
+    final response = await authRemoteDataSrc.signup(
+      signupRequestModel: signupRequestModel,
+    );
+    return response.fold((error) => Left(error), (authModel) {
+      authLocalDataSrc.saveAuthToken(authModel.accessTokenModel);
+      authLocalDataSrc.saveUserData(authModel.userModel);
+      return Right(authModel.toEntity());
+    });
+  }
+
+  @override
   Future<bool> isLoggedIn() async {
     final authToken = await authLocalDataSrc.getAuthToken();
     if (authToken == null) {
@@ -44,24 +58,6 @@ class AuthRepositoryImpl implements AuthRepository {
     } else {
       return true;
     }
-  }
-
-  @override
-  Future<Either<ApiError, void>> logout() async {
-    try {
-      await authLocalDataSrc.clearSavedData();
-      return const Right(null);
-    } catch (e) {
-      return Left(ApiError(errorMessage: "$e"));
-    }
-  }
-
-  @override
-  Future<Either<ApiError, AuthEntity>> signup({
-    required SignupRequestModel signupRequestModel,
-  }) {
-    // TODO: implement signup
-    throw UnimplementedError();
   }
 
   @override

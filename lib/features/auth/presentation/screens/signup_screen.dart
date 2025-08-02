@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:smart_wallet/core/router/app_routes.dart';
+import 'package:smart_wallet/core/utls/app_snackbar.dart';
+import 'package:smart_wallet/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/divider_widget.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/signup_screen_footer.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/signup_screen_header.dart';
@@ -16,11 +19,28 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  final _userNameController = TextEditingController();
-  final _userEmailController = TextEditingController();
-  final _userPasswordController = TextEditingController();
-  final _userConfirmPasswordController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  Future<void> _onPressedSignUpButton() async {
+    if (_formKey.currentState?.validate() ?? false) {
+      if (_passwordController.text != _confirmPasswordController.text) {
+        AppSnackbar.showSnackBar(
+          context: context,
+          content: "Password don't match",
+        );
+        return;
+      }
+      context.read<AuthCubit>().signup(
+        userName: _nameController.text.trim(),
+        email: _emailController.text.trim(),
+        password: _confirmPasswordController.text,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,31 +57,44 @@ class _SignupScreenState extends State<SignupScreen> {
                   const SizedBox(height: 32),
                   CustomTextField(
                     hintText: "Username",
-                    textEditingController: _userNameController,
+                    textEditingController: _nameController,
                   ),
                   const SizedBox(height: 20),
                   CustomTextField(
                     hintText: "Email",
-                    textEditingController: _userPasswordController,
+                    textEditingController: _emailController,
                     isEmail: true,
                   ),
                   const SizedBox(height: 20),
                   CustomTextField(
                     hintText: "Password",
-                    textEditingController: _userConfirmPasswordController,
+                    textEditingController: _passwordController,
                     isPassword: true,
                   ),
                   const SizedBox(height: 20),
                   CustomTextField(
                     hintText: "Confirm password",
-                    textEditingController: _userEmailController,
+                    textEditingController: _confirmPasswordController,
                     isPassword: true,
                   ),
                   const SizedBox(height: 20),
 
-                  ElevatedButton(
-                    onPressed: _onPressedSignUpButton,
-                    child: Text("Register"),
+                  BlocConsumer<AuthCubit, AuthState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      return ElevatedButton(
+                        onPressed: () {
+                          if (state is! AuthLoading) {
+                            _onPressedSignUpButton();
+                          }
+                        },
+                        child: state is AuthLoading
+                            ? CircularProgressIndicator.adaptive(
+                                backgroundColor: Colors.white,
+                              )
+                            : Text("Register"),
+                      );
+                    },
                   ),
                   const SizedBox(height: 20),
 
@@ -85,16 +118,12 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  Future<void> _onPressedSignUpButton() async {
-    if (_formKey.currentState != null && _formKey.currentState!.validate()) {}
-  }
-
   @override
   void dispose() {
-    _userNameController.dispose();
-    _userEmailController.dispose();
-    _userPasswordController.dispose();
-    _userConfirmPasswordController.dispose();
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 }

@@ -19,19 +19,28 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
   Future<Either<ApiError, AuthModel>> signup({
     required SignupRequestModel signupRequestModel,
   }) async {
-    throw UnimplementedError();
+    final NetworkResponseModel response = await networkExecutor.postRequest(
+      NetworkRequsetModel(
+        path: ApiConstants.signUpEndPoint,
+        body: signupRequestModel.toJson(),
+      ),
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return Right(AuthModel.fromJson(response.bodyData));
+    } else {
+      return Left(ApiError(errorMessage: response.message));
+    }
   }
 
   @override
   Future<Either<ApiError, AuthModel>> login({
     required LoginRequestModel loginRequestModel,
   }) async {
-    final formData = {
-      "email": loginRequestModel.email,
-      "password": loginRequestModel.password,
-    };
     final NetworkResponseModel response = await networkExecutor.postRequest(
-      NetworkRequsetModel(path: ApiConstants.loginEndPoint, body: formData),
+      NetworkRequsetModel(
+        path: ApiConstants.loginEndPoint,
+        body: loginRequestModel.toJson(),
+      ),
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {

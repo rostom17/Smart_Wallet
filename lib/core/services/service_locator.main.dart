@@ -1,4 +1,4 @@
-
+import 'package:smart_wallet/features/auth/domain/usecases/signup_usecase.dart';
 
 import 'service_locator.dart';
 
@@ -62,6 +62,9 @@ Future<void> setupServiceLocator() async {
     () => LoginUseCase(authRepository: serviceLocator()),
   );
   serviceLocator.registerLazySingleton(
+    () => SignupUseCase(authRepository: serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(
     () => CheckAuthStatusUsecase(authRepository: serviceLocator()),
   );
   serviceLocator.registerLazySingleton(
@@ -72,21 +75,26 @@ Future<void> setupServiceLocator() async {
   );
 
   //Cubits
-  serviceLocator.registerFactory<CheckAuthStatusCubit>(
+  serviceLocator.registerLazySingleton<CheckAuthStatusCubit>(
     () => CheckAuthStatusCubit(
       checkAuthStatusUsecase: serviceLocator<CheckAuthStatusUsecase>(),
       getCurrentUserUsecase: serviceLocator<GetCurrentUserUsecase>(),
     ),
   );
-  serviceLocator.registerFactory<LoginCubit>(
-    () => LoginCubit(lgoinUseCase: serviceLocator<LoginUseCase>()),
+  serviceLocator.registerLazySingleton<AuthCubit>(
+    () => AuthCubit(
+      lgoinUseCase: serviceLocator<LoginUseCase>(),
+      signupUseCase: serviceLocator<SignupUseCase>(),
+    ),
   );
-  serviceLocator.registerFactory<BottomNavCubit>(() => BottomNavCubit());
-  serviceLocator.registerFactory<ShowPasswordCubit>(() => ShowPasswordCubit());
+  serviceLocator.registerLazySingleton<BottomNavCubit>(() => BottomNavCubit());
+  serviceLocator.registerLazySingleton<ShowPasswordCubit>(
+    () => ShowPasswordCubit(),
+  );
   serviceLocator.registerFactory<TransectionCardIndexCubit>(
     () => TransectionCardIndexCubit(),
   );
-  serviceLocator.registerFactory<LogoutCubit>(
+  serviceLocator.registerLazySingleton<LogoutCubit>(
     () => LogoutCubit(logoutUsecase: serviceLocator<LogoutUsecase>()),
   );
 }

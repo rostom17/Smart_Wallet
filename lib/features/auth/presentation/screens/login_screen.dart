@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:smart_wallet/core/router/app_routes.dart';
-import 'package:smart_wallet/features/auth/presentation/bloc/login_cubit.dart';
+import 'package:smart_wallet/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/divider_widget.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/signup_screen_footer.dart';
@@ -25,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _onLogin() async {
     if (_formKey.currentState!.validate()) {
-      context.read<LoginCubit>().login(
+      context.read<AuthCubit>().login(
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
@@ -75,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
 
-                  BlocConsumer<LoginCubit, AuthState>(
+                  BlocConsumer<AuthCubit, AuthState>(
                     listener: (context, state) {
                       if (state is AuthSuccessful) {
                         context.pushReplacementNamed(AppRoutes.bottomNavScreen);
