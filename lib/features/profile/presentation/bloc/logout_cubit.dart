@@ -1,4 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smart_wallet/core/services/service_locator.dart';
+import 'package:smart_wallet/core/services/service_locator.main.dart';
 import 'package:smart_wallet/features/common/domain/entities/api_error.dart';
 import 'package:smart_wallet/features/common/domain/entities/no_params.dart';
 import 'package:smart_wallet/features/profile/domain/usecases/logout_usecase.dart';
@@ -26,6 +28,7 @@ class LogoutCubit extends Cubit<LogoutState> {
     final isLoggedOut = await logoutUsecase.call(NoParams());
     isLoggedOut.fold((failure) => LogoutError(errorMessage: failure), (right) {
       if (right == true) {
+        serviceLocator<BottomNavCubit>().resetToDefaultIndex();
         emit(LogoutSuccess());
       } else {
         emit(

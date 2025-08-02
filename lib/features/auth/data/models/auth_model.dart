@@ -1,8 +1,8 @@
 import 'package:smart_wallet/features/auth/data/models/access_token_model.dart';
 import 'package:smart_wallet/features/auth/data/models/refresh_token_model.dart';
-import 'package:smart_wallet/features/auth/data/models/user_model.dart';
+import 'package:smart_wallet/features/common/data/models/user_model.dart';
 import 'package:smart_wallet/features/auth/domain/entities/auth_entity.dart';
-import 'package:smart_wallet/features/common/data/base_model.dart';
+import 'package:smart_wallet/features/common/data/models/base_model.dart';
 
 class AuthModel implements BaseModel<AuthEntity> {
   final AccessTokenModel accessTokenModel;

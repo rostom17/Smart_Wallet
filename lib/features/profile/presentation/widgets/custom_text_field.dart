@@ -20,6 +20,7 @@ class CustomTextField extends StatelessWidget {
     return BlocBuilder<ShowPasswordCubit2, bool>(
       builder: (context, show) {
         return TextFormField(
+          enabled: isPassword,
           controller: textEditingController,
           obscureText: isPassword && !show,
           decoration: InputDecoration(
@@ -27,15 +28,8 @@ class CustomTextField extends StatelessWidget {
             enabled: true,
             fillColor: Colors.transparent,
             filled: true,
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: AppColors.primaryColor, width: 1.5),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: AppColors.primaryColor, width: 1.5),
-            ),
             label: Text(labelName),
+            labelStyle: TextStyle(fontSize: 13),
             suffixIcon: isPassword
                 ? Padding(
                     padding: const EdgeInsets.all(12.0),
@@ -55,6 +49,10 @@ class CustomTextField extends StatelessWidget {
                     ),
                   )
                 : SizedBox(),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: AppColors.primaryColor, width: 1.5),
+            ),
           ),
         );
       },

@@ -1,4 +1,4 @@
-import 'package:smart_wallet/features/auth/domain/entities/user_entity.dart';
+import 'package:smart_wallet/features/common/domain/entities/user_entity.dart';
 
 class AuthEntity {
   final String accessToken;

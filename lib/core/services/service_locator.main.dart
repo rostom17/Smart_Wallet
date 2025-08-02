@@ -1,5 +1,4 @@
-import 'package:smart_wallet/features/auth/domain/usecases/signup_usecase.dart';
-import 'package:smart_wallet/features/auth/presentation/bloc/signup_cubit.dart';
+import 'package:smart_wallet/features/profile/domain/usecases/get_current_user_usecase.dart';
 
 import 'service_locator.dart';
 
@@ -46,6 +45,9 @@ Future<void> setupServiceLocator() async {
       sharedPreferences: serviceLocator(),
     ),
   );
+  serviceLocator.registerLazySingleton<ProfileRemoteDataSrc>(
+    () => ProfileRemoteDataSrcImpl(networkExecutor: serviceLocator()),
+  );
 
   //repositories
   serviceLocator.registerLazySingleton<AuthRepository>(
@@ -55,7 +57,10 @@ Future<void> setupServiceLocator() async {
     ),
   );
   serviceLocator.registerLazySingleton<ProfileRepository>(
-    () => ProfileRepositoryImpl(localDataSrc: serviceLocator()),
+    () => ProfileRepositoryImpl(
+      localDataSrc: serviceLocator(),
+      remoteDataSrc: serviceLocator(),
+    ),
   );
 
   //UseCases
@@ -69,17 +74,16 @@ Future<void> setupServiceLocator() async {
     () => CheckAuthStatusUsecase(authRepository: serviceLocator()),
   );
   serviceLocator.registerLazySingleton(
-    () => GetCurrentUserUsecase(authRepository: serviceLocator()),
+    () => LogoutUsecase(profileRepository: serviceLocator()),
   );
   serviceLocator.registerLazySingleton(
-    () => LogoutUsecase(profileRepository: serviceLocator()),
+    () => GetCurrentUserUsecase(profileRepository: serviceLocator()),
   );
 
   //Cubits
   serviceLocator.registerLazySingleton<CheckAuthStatusCubit>(
     () => CheckAuthStatusCubit(
       checkAuthStatusUsecase: serviceLocator<CheckAuthStatusUsecase>(),
-      getCurrentUserUsecase: serviceLocator<GetCurrentUserUsecase>(),
     ),
   );
   serviceLocator.registerLazySingleton<LoginCubit>(
@@ -88,14 +92,19 @@ Future<void> setupServiceLocator() async {
   serviceLocator.registerFactory<SignupCubit>(
     () => SignupCubit(signupUseCase: serviceLocator<SignupUseCase>()),
   );
+  serviceLocator.registerLazySingleton<LogoutCubit>(
+    () => LogoutCubit(logoutUsecase: serviceLocator<LogoutUsecase>()),
+  );
+  serviceLocator.registerLazySingleton<ProfileDataCubit>(
+    () => ProfileDataCubit(
+      getCurrentUserUsecase: serviceLocator<GetCurrentUserUsecase>(),
+    ),
+  );
   serviceLocator.registerLazySingleton<BottomNavCubit>(() => BottomNavCubit());
   serviceLocator.registerLazySingleton<ShowPasswordCubit>(
     () => ShowPasswordCubit(),
   );
   serviceLocator.registerFactory<TransectionCardIndexCubit>(
     () => TransectionCardIndexCubit(),
-  );
-  serviceLocator.registerLazySingleton<LogoutCubit>(
-    () => LogoutCubit(logoutUsecase: serviceLocator<LogoutUsecase>()),
   );
 }

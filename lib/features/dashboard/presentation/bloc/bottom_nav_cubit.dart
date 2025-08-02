@@ -14,4 +14,8 @@ class BottomNavCubit extends Cubit<int> {
       emit(newIndex);
     }
   }
+  void resetToDefaultIndex() {
+    _previousIndex = 0;
+    emit(0);
+  }
 }

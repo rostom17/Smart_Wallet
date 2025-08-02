@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_wallet/features/auth/domain/entities/user_entity.dart';
+import 'package:smart_wallet/features/common/domain/entities/user_entity.dart';
 import 'package:smart_wallet/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:smart_wallet/features/common/domain/entities/api_error.dart';
 

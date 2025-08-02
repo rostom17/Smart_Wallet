@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:smart_wallet/core/constants/app_secrets.dart';
 import 'package:smart_wallet/core/services/service_locator.dart';
 import 'package:smart_wallet/features/auth/data/models/access_token_model.dart';
-import 'package:smart_wallet/features/auth/data/models/user_model.dart';
+import 'package:smart_wallet/features/common/data/models/user_model.dart';
 
 class AuthLocalDataSrcImpl implements AuthLocalDataSrc {
   static const String accessTokenKey = AppSecrets.accessTokenKey;
@@ -26,18 +26,6 @@ class AuthLocalDataSrcImpl implements AuthLocalDataSrc {
   @override
   Future<String?> getAuthToken() async {
     return await secureStorage.read(key: accessTokenKey);
-  }
-
-  @override
-  Future<UserModel?> getUserData() async {
-    try {
-      final jsonString = sharedPreferences.getString(userDataKey);
-      if (jsonString == null) return null;
-      final user = jsonDecode(jsonString);
-      return UserModel.fromJson(user);
-    } catch (e) {
-      return null;
-    }
   }
 
   @override
