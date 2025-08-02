@@ -1,4 +1,5 @@
 import 'package:smart_wallet/features/auth/domain/usecases/signup_usecase.dart';
+import 'package:smart_wallet/features/auth/presentation/bloc/signup_cubit.dart';
 
 import 'service_locator.dart';
 
@@ -81,11 +82,11 @@ Future<void> setupServiceLocator() async {
       getCurrentUserUsecase: serviceLocator<GetCurrentUserUsecase>(),
     ),
   );
-  serviceLocator.registerLazySingleton<AuthCubit>(
-    () => AuthCubit(
-      lgoinUseCase: serviceLocator<LoginUseCase>(),
-      signupUseCase: serviceLocator<SignupUseCase>(),
-    ),
+  serviceLocator.registerLazySingleton<LoginCubit>(
+    () => LoginCubit(lgoinUseCase: serviceLocator<LoginUseCase>()),
+  );
+  serviceLocator.registerFactory<SignupCubit>(
+    () => SignupCubit(signupUseCase: serviceLocator<SignupUseCase>()),
   );
   serviceLocator.registerLazySingleton<BottomNavCubit>(() => BottomNavCubit());
   serviceLocator.registerLazySingleton<ShowPasswordCubit>(

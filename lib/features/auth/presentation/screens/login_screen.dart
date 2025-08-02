@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:smart_wallet/core/router/app_routes.dart';
-import 'package:smart_wallet/features/auth/presentation/bloc/auth_cubit.dart';
+import 'package:smart_wallet/features/auth/presentation/bloc/login_cubit.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/divider_widget.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/signup_screen_footer.dart';
@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _onLogin() async {
     if (_formKey.currentState!.validate()) {
-      context.read<AuthCubit>().login(
+      context.read<LoginCubit>().login(
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
@@ -74,11 +74,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
 
-                  BlocConsumer<AuthCubit, AuthState>(
+                  BlocConsumer<LoginCubit, LoginState>(
                     listener: (context, state) {
-                      if (state is AuthSuccessful) {
+                      if (state is LoginSuccessful) {
                         context.pushReplacementNamed(AppRoutes.bottomNavScreen);
-                      } else if (state is AuthFailed) {
+                      } else if (state is LoginFailed) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(state.failure.errorMessage)),
                         );
@@ -87,11 +87,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     builder: (context, state) {
                       return ElevatedButton(
                         onPressed: () {
-                          if (state is! AuthLoading) {
+                          if (state is! LoginLoading) {
                             _onLogin();
                           }
                         },
-                        child: state is AuthLoading
+                        child: state is LoginLoading
                             ? CircularProgressIndicator.adaptive(
                                 backgroundColor: Colors.white,
                               )

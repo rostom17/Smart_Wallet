@@ -2,8 +2,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:smart_wallet/core/services/service_locator.main.dart';
 import 'package:smart_wallet/features/auth/presentation/bloc/check_auth_status_cubit.dart';
-import 'package:smart_wallet/features/auth/presentation/bloc/auth_cubit.dart';
+import 'package:smart_wallet/features/auth/presentation/bloc/login_cubit.dart';
 import 'package:smart_wallet/features/auth/presentation/bloc/show_password_cubit.dart';
+import 'package:smart_wallet/features/auth/presentation/bloc/signup_cubit.dart';
 import 'package:smart_wallet/features/dashboard/presentation/bloc/bottom_nav_cubit.dart';
 import 'package:smart_wallet/features/profile/presentation/bloc/change_profile_widget_cubit.dart';
 import 'package:smart_wallet/features/profile/presentation/bloc/logout_cubit.dart';
@@ -19,10 +20,12 @@ class AppBlocProviders {
       create: (_) => serviceLocator<CheckAuthStatusCubit>(),
     ),
 
-    BlocProvider<AuthCubit>(
-      create: (_) => serviceLocator<AuthCubit>(),
+    BlocProvider<LoginCubit>(
+      create: (_) => serviceLocator<LoginCubit>(),
       lazy: true,
     ),
+
+    BlocProvider<SignupCubit>(create: (_) => serviceLocator<SignupCubit>()),
 
     BlocProvider<LogoutCubit>(
       create: (_) => serviceLocator<LogoutCubit>(),

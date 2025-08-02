@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:smart_wallet/core/router/app_routes.dart';
 import 'package:smart_wallet/core/utls/app_snackbar.dart';
-import 'package:smart_wallet/features/auth/presentation/bloc/auth_cubit.dart';
+import 'package:smart_wallet/features/auth/presentation/bloc/signup_cubit.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/divider_widget.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/signup_screen_footer.dart';
 import 'package:smart_wallet/features/auth/presentation/widgets/signup_screen_header.dart';
@@ -34,7 +34,7 @@ class _SignupScreenState extends State<SignupScreen> {
         );
         return;
       }
-      context.read<AuthCubit>().signup(
+      context.read<SignupCubit>().signup(
         userName: _nameController.text.trim(),
         email: _emailController.text.trim(),
         password: _confirmPasswordController.text,
@@ -79,16 +79,26 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   const SizedBox(height: 20),
 
-                  BlocConsumer<AuthCubit, AuthState>(
-                    listener: (context, state) {},
+                  BlocConsumer<SignupCubit, SignupState>(
+                    listener: (context, state) {
+                      if (state is SignupSuccessful) {
+                        context.pushReplacementNamed(AppRoutes.bottomNavScreen);
+                      }
+                      if (state is SignupFailed) {
+                        AppSnackbar.showSnackBar(
+                          context: context,
+                          content: state.failure.errorMessage,
+                        );
+                      }
+                    },
                     builder: (context, state) {
                       return ElevatedButton(
                         onPressed: () {
-                          if (state is! AuthLoading) {
+                          if (state is! SignupLoading) {
                             _onPressedSignUpButton();
                           }
                         },
-                        child: state is AuthLoading
+                        child: state is SignupLoading
                             ? CircularProgressIndicator.adaptive(
                                 backgroundColor: Colors.white,
                               )
