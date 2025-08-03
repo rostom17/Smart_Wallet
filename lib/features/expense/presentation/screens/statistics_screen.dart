@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smart_wallet/core/utls/month_names.dart';
 import 'package:smart_wallet/core/utls/transection_history.dart';
+import 'package:smart_wallet/features/expense/presentation/bloc/get_all_expense_cubit.dart';
 import 'package:smart_wallet/features/expense/presentation/widgets/transection_card_widget.dart';
 import 'package:smart_wallet/features/expense/domain/entities/expense_entity.dart';
 import 'package:smart_wallet/features/expense/presentation/widgets/time_period_selector.dart';
@@ -59,16 +61,31 @@ class StatisticsScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
-            ...List.generate(
-              TransectionHistory.transections.length,
-              (index) => TransectionCardWidget(
-                expense: ExpenseEntity(
-                  id: -1,
-                  title: "Dummy",
-                  amount: 30.4,
-                  date: DateTime.now(),
-                ),
-              ),
+            BlocBuilder<GetAllExpenseCubit, GetAllExpenseState>(
+              builder: (context, state) {
+                if (state is GetAllExpenseLoading) {
+                  return const CircularProgressIndicator.adaptive(
+                    backgroundColor: Colors.white,
+                  );
+                }
+                if (state is GetAllExpenseFailed) {
+                  return Center(child: Text(state.error.errorMessage));
+                }
+                if (state is GetAllExpenseSuccessfull) {
+                  return Column(
+                    children: state.expenseList
+                        .map(
+                          (e) => TransectionCardWidget(
+                            expense: e,
+                            iconIndex: TransectionHistoryUtl.iconIndex,
+                          ),
+                        )
+                        .toList(),
+                  );
+                } else {
+                  return Center(child: Text("Unknown State"));
+                }
+              },
             ),
           ],
         ),

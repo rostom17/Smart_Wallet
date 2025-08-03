@@ -1,6 +1,8 @@
+import 'dart:math';
+
 import 'package:smart_wallet/core/constants/app_strings.dart';
 
-class TransectionHistory {
+class TransectionHistoryUtl {
   static List<String> transections = [
     AppStrings.upworkLogo,
     AppStrings.personLogo,
@@ -14,4 +16,9 @@ class TransectionHistory {
     AppStrings.salaryLogo,
     AppStrings.traveLogo,
   ];
+
+  static int get iconIndex {
+    Random random = Random();
+    return random.nextInt(transections.length);
+  }
 }

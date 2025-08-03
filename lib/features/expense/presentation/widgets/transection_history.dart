@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smart_wallet/core/utls/transection_history.dart';
 import 'package:smart_wallet/features/expense/presentation/widgets/transection_card_widget.dart';
 import 'package:smart_wallet/features/expense/presentation/bloc/get_all_expense_cubit.dart';
 
@@ -27,7 +28,13 @@ class TransectionHistory extends StatelessWidget {
             if (state is GetAllExpenseSuccessfull)
               ...state.expenseList
                   .sublist(0, getSublistLength(state.expenseList.length))
-                  .map((expense) => TransectionCardWidget(expense: expense)),
+                  .map(
+                    (expense) => TransectionCardWidget(
+                      expense: expense,
+                      iconIndex: TransectionHistoryUtl.iconIndex,
+                      fromHomeScreen: true,
+                    ),
+                  ),
             if (state is GetAllExpenseFailed) Text(state.error.errorMessage),
           ],
         );

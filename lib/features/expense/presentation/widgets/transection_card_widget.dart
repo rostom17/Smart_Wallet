@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_wallet/core/constants/app_colors.dart';
@@ -10,11 +8,13 @@ import 'package:smart_wallet/features/expense/domain/entities/expense_entity.dar
 class TransectionCardWidget extends StatelessWidget {
   const TransectionCardWidget({
     required this.expense,
+    required this.iconIndex,
     this.fromHomeScreen = false,
     super.key,
   });
 
   final ExpenseEntity expense;
+  final int iconIndex;
   final bool fromHomeScreen;
 
   @override
@@ -81,9 +81,7 @@ class TransectionCardWidget extends StatelessWidget {
 
       child: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Image.asset(
-          TransectionHistory.transections[chooseRandomIndex()],
-        ),
+        child: Image.asset(TransectionHistoryUtl.transections[iconIndex]),
       ),
     );
   }
@@ -141,10 +139,5 @@ class TransectionCardWidget extends StatelessWidget {
             : Colors.green,
       ),
     );
-  }
-
-  int chooseRandomIndex() {
-    Random random = Random();
-    return random.nextInt(TransectionHistory.transections.length);
   }
 }
