@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smart_wallet/core/services/service_locator.dart';
 import 'package:smart_wallet/core/utls/transection_history.dart';
 import 'package:smart_wallet/features/expense/presentation/widgets/transection_card_widget.dart';
 import 'package:smart_wallet/features/expense/presentation/bloc/get_all_expense_cubit.dart';
@@ -20,7 +21,12 @@ class TransectionHistory extends StatelessWidget {
                   "Transection History",
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
-                TextButton(onPressed: () {}, child: Text("See all")),
+                TextButton(
+                  onPressed: () {
+                    context.read<BottomNavCubit>().onTabChanged(1);
+                  },
+                  child: Text("See all"),
+                ),
               ],
             ),
             if (state is GetAllExpenseLoading)
