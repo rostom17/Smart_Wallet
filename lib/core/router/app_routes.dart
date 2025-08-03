@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:smart_wallet/features/expense/presentation/screens/add_expense_screen.dart';
 import 'package:smart_wallet/features/auth/presentation/screens/login_screen.dart';
 import 'package:smart_wallet/features/auth/presentation/screens/signup_screen.dart';
-import 'package:smart_wallet/features/dashboard/presentation/screens/bottom_nav_screen.dart';
+import 'package:smart_wallet/features/expense/presentation/screens/bottom_nav_screen.dart';
 import 'package:smart_wallet/features/auth/presentation/screens/splash_screen.dart';
 import 'package:smart_wallet/features/wallet/presentation/screens/payment_method_screen.dart';
 import 'package:smart_wallet/features/wallet/presentation/screens/wallet_screen.dart';

@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:smart_wallet/core/router/app_routes.dart';
 
 import 'package:smart_wallet/core/constants/app_colors.dart';
-import 'package:smart_wallet/features/dashboard/presentation/bloc/bottom_nav_cubit.dart';
+import 'package:smart_wallet/features/expense/presentation/bloc/bottom_nav_cubit.dart';
 import 'package:smart_wallet/features/expense/presentation/screens/home_screen.dart';
 import 'package:smart_wallet/features/profile/presentation/screens/profile_screen.dart';
 import 'package:smart_wallet/features/expense/presentation/screens/statistics_screen.dart';
