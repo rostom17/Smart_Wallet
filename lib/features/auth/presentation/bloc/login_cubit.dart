@@ -7,15 +7,15 @@ import 'package:smart_wallet/features/common/domain/entities/api_error.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit({required this.lgoinUseCase}) : super(LoginInitial());
+  LoginCubit({required this.loginUseCase}) : super(LoginInitial());
 
-  final LoginUseCase lgoinUseCase;
+  final LoginUseCase loginUseCase;
 
   Future<void> login({required String email, required String password}) async {
     try {
       emit(LoginLoading());
 
-      final result = await lgoinUseCase.call(
+      final result = await loginUseCase.call(
         UserLoginParameters(email: email, password: password),
       );
 

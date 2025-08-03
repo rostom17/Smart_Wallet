@@ -107,7 +107,7 @@ Future<void> setupServiceLocator() async {
     ),
   );
   serviceLocator.registerLazySingleton<LoginCubit>(
-    () => LoginCubit(lgoinUseCase: serviceLocator<LoginUseCase>()),
+    () => LoginCubit(loginUseCase: serviceLocator<LoginUseCase>()),
   );
   serviceLocator.registerFactory<SignupCubit>(
     () => SignupCubit(signupUseCase: serviceLocator<SignupUseCase>()),
