@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_wallet/core/utls/app_snackbar.dart';
 import 'package:smart_wallet/features/expense/presentation/bloc/add_expense_cubit.dart';
+import 'package:smart_wallet/features/expense/presentation/bloc/get_all_expense_cubit.dart';
 import '../widgets/custom_text_field.dart';
 import 'package:smart_wallet/features/expense/presentation/widgets/add_invoice_button.dart';
 import 'package:smart_wallet/features/common/widgets/background_pattern_widget.dart';
@@ -108,6 +109,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 );
               }
               if (state is AddExpnseSuccessful) {
+                context.read<GetAllExpenseCubit>().getAllExpense();
                 AppSnackbar.showSnackBar(
                   context: context,
                   content: "New expense added",

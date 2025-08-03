@@ -49,6 +49,6 @@ class TransectionHistory extends StatelessWidget {
   }
 
   int getSublistLength(int maxLen) {
-    return maxLen > 5 ? 5 : maxLen;
+    return maxLen > 10 ? 10 : maxLen;
   }
 }
