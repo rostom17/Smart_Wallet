@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_wallet/core/constants/app_colors.dart';
+import 'package:smart_wallet/core/utls/date_formatter.dart';
 import 'package:smart_wallet/core/utls/transection_history.dart';
 import 'package:smart_wallet/features/expense/presentation/bloc/choose_transection_cubit.dart';
 import 'package:smart_wallet/features/expense/domain/entities/expense_entity.dart';
@@ -54,7 +55,7 @@ class TransectionCardWidget extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 8, bottom: 8, right: 8),
                 child: Row(
                   children: [
-                    _buildIconContainer(),
+                    _buildIconContainer(isSelected),
                     const SizedBox(width: 8),
                     _buildNameAndDateTimeColumn(isSelected),
                     Spacer(),
@@ -70,7 +71,7 @@ class TransectionCardWidget extends StatelessWidget {
     );
   }
 
-  Container _buildIconContainer() {
+  Container _buildIconContainer(bool isSelected) {
     return Container(
       height: 50,
       width: 50,
@@ -99,7 +100,7 @@ class TransectionCardWidget extends StatelessWidget {
           ),
         ),
         Text(
-          expense.date.toString(),
+          DateFormatter.mmYYdd(expense.date),
           style: TextStyle(
             fontSize: 12,
             color: isSelected && !fromHomeScreen

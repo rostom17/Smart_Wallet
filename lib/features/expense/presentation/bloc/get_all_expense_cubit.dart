@@ -15,9 +15,10 @@ class GetAllExpenseCubit extends Cubit<GetAllExpenseState> {
   Future<void> getAllExpense() async {
     emit(GetAllExpenseLoading());
     final response = await getAllExpenseUsecase.call(NoParams());
-    response.fold(
-      (error) => emit(GetAllExpenseFailed(error: error)),
-      (expenseList) => emit(GetAllExpenseSuccessfull(expenseList: expenseList)),
-    );
+    response.fold((error) => emit(GetAllExpenseFailed(error: error)), (
+      expenseList,
+    ) {
+      emit(GetAllExpenseSuccessfull(expenseList: expenseList.reversed.toList()));
+    });
   }
 }
