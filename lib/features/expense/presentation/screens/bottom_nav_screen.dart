@@ -2,23 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_wallet/core/router/app_routes.dart';
-
 import 'package:smart_wallet/core/constants/app_colors.dart';
 import 'package:smart_wallet/features/expense/presentation/bloc/bottom_nav_cubit.dart';
+import 'package:smart_wallet/features/expense/presentation/bloc/get_all_expense_cubit.dart';
 import 'package:smart_wallet/features/expense/presentation/screens/home_screen.dart';
 import 'package:smart_wallet/features/profile/presentation/screens/profile_screen.dart';
 import 'package:smart_wallet/features/expense/presentation/screens/statistics_screen.dart';
 import 'package:smart_wallet/features/wallet/presentation/screens/wallet_screen.dart';
 
-class BottomNavScreen extends StatelessWidget {
-  BottomNavScreen({super.key});
+class BottomNavScreen extends StatefulWidget {
+  const BottomNavScreen({super.key});
 
+  @override
+  State<BottomNavScreen> createState() => _BottomNavScreenState();
+}
+
+class _BottomNavScreenState extends State<BottomNavScreen> {
   final List<Widget> _pages = [
     HomeScreen(),
     StatisticsScreen(),
     CardScreen(),
     ProfileScreen(),
   ];
+
+  @override
+  void initState() {
+    context.read<GetAllExpenseCubit>().getAllExpense();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
