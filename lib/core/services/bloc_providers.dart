@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_wallet/core/services/service_locator.dart';
 import 'package:smart_wallet/core/services/service_locator.main.dart';
+import 'package:smart_wallet/features/expense/presentation/bloc/get_all_expense_cubit.dart';
 import 'package:smart_wallet/features/profile/presentation/bloc/change_profile_widget_cubit.dart';
 import 'package:smart_wallet/features/profile/presentation/bloc/show_password_cubit.dart';
 import 'package:smart_wallet/features/expense/presentation/bloc/time_period_selector_cubit.dart';
@@ -34,8 +35,8 @@ class AppBlocProviders {
       lazy: true,
     ),
 
-    BlocProvider<TransectionCardIndexCubit>(
-      create: (_) => serviceLocator<TransectionCardIndexCubit>(),
+    BlocProvider<ChooseTransectionCubit>(
+      create: (_) => serviceLocator<ChooseTransectionCubit>(),
     ),
 
     BlocProvider<SelectOtherCubit>(
@@ -60,6 +61,9 @@ class AppBlocProviders {
 
     BlocProvider<ProfileDataCubit>(
       create: (_) => serviceLocator<ProfileDataCubit>(),
+    ),
+    BlocProvider<GetAllExpenseCubit>(
+      create: (_) => serviceLocator<GetAllExpenseCubit>(),
     ),
   ];
 }

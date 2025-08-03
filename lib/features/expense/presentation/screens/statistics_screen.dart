@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smart_wallet/core/utls/month_names.dart';
 import 'package:smart_wallet/core/utls/transection_history.dart';
-import 'package:smart_wallet/features/common/widgets/transection_card_widget.dart';
+import 'package:smart_wallet/features/expense/presentation/widgets/transection_card_widget.dart';
+import 'package:smart_wallet/features/expense/domain/entities/expense_entity.dart';
 import 'package:smart_wallet/features/expense/presentation/widgets/time_period_selector.dart';
 import 'package:smart_wallet/features/expense/presentation/widgets/dropdown_button_widget.dart';
 
@@ -60,7 +61,14 @@ class StatisticsScreen extends StatelessWidget {
             const SizedBox(height: 16),
             ...List.generate(
               TransectionHistory.transections.length,
-              (index) => TransectionCardWidget(itemIndex: index),
+              (index) => TransectionCardWidget(
+                expense: ExpenseEntity(
+                  id: -1,
+                  title: "Dummy",
+                  amount: 30.4,
+                  date: DateTime.now(),
+                ),
+              ),
             ),
           ],
         ),

@@ -1,27 +1,32 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_wallet/core/constants/app_colors.dart';
 import 'package:smart_wallet/core/utls/transection_history.dart';
-import 'package:smart_wallet/features/common/bloc/transection_card_index_cubit.dart';
+import 'package:smart_wallet/features/expense/presentation/bloc/choose_transection_cubit.dart';
+import 'package:smart_wallet/features/expense/domain/entities/expense_entity.dart';
 
 class TransectionCardWidget extends StatelessWidget {
   const TransectionCardWidget({
-    super.key,
-    required this.itemIndex,
+    required this.expense,
     this.fromHomeScreen = false,
+    super.key,
   });
 
-  final int itemIndex;
+  final ExpenseEntity expense;
   final bool fromHomeScreen;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TransectionCardIndexCubit, int>(
+    return BlocBuilder<ChooseTransectionCubit, int?>(
       builder: (context, state) {
-        bool isSelected = state == itemIndex;
+        bool isSelected = state == expense.id;
         return GestureDetector(
           onTap: () {
-            context.read<TransectionCardIndexCubit>().changeIndex(itemIndex);
+            context.read<ChooseTransectionCubit>().selectTransection(
+              expense.id,
+            );
           },
           child: Padding(
             padding: const EdgeInsets.only(top: 4, bottom: 4),
@@ -77,7 +82,7 @@ class TransectionCardWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Image.asset(
-          TransectionHistory.transections[itemIndex]["iconPath"],
+          TransectionHistory.transections[chooseRandomIndex()],
         ),
       ),
     );
@@ -88,7 +93,7 @@ class TransectionCardWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          TransectionHistory.transections[itemIndex]["name"],
+          expense.title,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -96,7 +101,7 @@ class TransectionCardWidget extends StatelessWidget {
           ),
         ),
         Text(
-          TransectionHistory.transections[itemIndex]["dateTime"],
+          expense.date.toString(),
           style: TextStyle(
             fontSize: 12,
             color: isSelected && !fromHomeScreen
@@ -110,13 +115,13 @@ class TransectionCardWidget extends StatelessWidget {
 
   Text _buildPlusMinusIcon(bool isSelected) {
     return Text(
-      TransectionHistory.transections[itemIndex]["isSpending"] ? "-" : "+",
+      expense.id % 2 == 0 ? "-" : "+",
       style: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.w700,
         color: isSelected && !fromHomeScreen
             ? Colors.white
-            : TransectionHistory.transections[itemIndex]["isSpending"]
+            : expense.id % 2 == 0
             ? Colors.red
             : Colors.green,
       ),
@@ -125,16 +130,21 @@ class TransectionCardWidget extends StatelessWidget {
 
   Text _buildAmount(bool isSelected) {
     return Text(
-      "\$${TransectionHistory.transections[itemIndex]["amount"]}",
+      "\$${expense.amount}",
       style: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.w700,
         color: isSelected && !fromHomeScreen
             ? Colors.white
-            : TransectionHistory.transections[itemIndex]["isSpending"]
+            : expense.id % 2 == 0
             ? Colors.red
             : Colors.green,
       ),
     );
+  }
+
+  int chooseRandomIndex() {
+    Random random = Random();
+    return random.nextInt(TransectionHistory.transections.length);
   }
 }

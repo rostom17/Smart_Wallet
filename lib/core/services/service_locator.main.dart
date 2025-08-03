@@ -1,3 +1,9 @@
+import 'package:smart_wallet/features/expense/data/datasource/expense_remote_data_src.dart';
+import 'package:smart_wallet/features/expense/data/datasource/expense_remote_data_src_impl.dart';
+import 'package:smart_wallet/features/expense/data/repositories/expense_repository_impl.dart';
+import 'package:smart_wallet/features/expense/domain/repositories/expense_repository.dart';
+import 'package:smart_wallet/features/expense/domain/usecases/get_all_expense_usecase.dart';
+import 'package:smart_wallet/features/expense/presentation/bloc/get_all_expense_cubit.dart';
 import 'package:smart_wallet/features/profile/domain/usecases/get_current_user_usecase.dart';
 
 import 'service_locator.dart';
@@ -48,6 +54,9 @@ Future<void> setupServiceLocator() async {
   serviceLocator.registerLazySingleton<ProfileRemoteDataSrc>(
     () => ProfileRemoteDataSrcImpl(networkExecutor: serviceLocator()),
   );
+  serviceLocator.registerLazySingleton<ExpenseRemoteDataSource>(
+    () => ExpenseRemoteDataSrcImpl(networkExecutor: serviceLocator()),
+  );
 
   //repositories
   serviceLocator.registerLazySingleton<AuthRepository>(
@@ -61,6 +70,9 @@ Future<void> setupServiceLocator() async {
       localDataSrc: serviceLocator(),
       remoteDataSrc: serviceLocator(),
     ),
+  );
+  serviceLocator.registerLazySingleton<ExpenseRepository>(
+    () => ExpenseRepositoryImpl(expenseRemoteDataSource: serviceLocator()),
   );
 
   //UseCases
@@ -78,6 +90,9 @@ Future<void> setupServiceLocator() async {
   );
   serviceLocator.registerLazySingleton(
     () => GetCurrentUserUsecase(profileRepository: serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(
+    () => GetAllExpenseUsecase(expenseRepository: serviceLocator()),
   );
 
   //Cubits
@@ -100,11 +115,14 @@ Future<void> setupServiceLocator() async {
       getCurrentUserUsecase: serviceLocator<GetCurrentUserUsecase>(),
     ),
   );
+  serviceLocator.registerFactory<GetAllExpenseCubit>(
+    () => GetAllExpenseCubit(getAllExpenseUsecase: serviceLocator()),
+  );
   serviceLocator.registerLazySingleton<BottomNavCubit>(() => BottomNavCubit());
   serviceLocator.registerLazySingleton<ShowPasswordCubit>(
     () => ShowPasswordCubit(),
   );
-  serviceLocator.registerFactory<TransectionCardIndexCubit>(
-    () => TransectionCardIndexCubit(),
+  serviceLocator.registerFactory<ChooseTransectionCubit>(
+    () => ChooseTransectionCubit(),
   );
 }

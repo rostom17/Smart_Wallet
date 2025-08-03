@@ -19,7 +19,7 @@ export 'package:smart_wallet/features/auth/domain/usecases/check_auth_status_use
 export 'package:smart_wallet/features/auth/presentation/bloc/check_auth_status_cubit.dart';
 export 'package:smart_wallet/features/auth/presentation/bloc/show_password_cubit.dart';
 export 'package:smart_wallet/features/dashboard/presentation/bloc/bottom_nav_cubit.dart';
-export 'package:smart_wallet/features/common/bloc/transection_card_index_cubit.dart';
+export 'package:smart_wallet/features/expense/presentation/bloc/choose_transection_cubit.dart';
 export 'package:smart_wallet/features/profile/data/datasources/profile_local_data_src.dart';
 export 'package:smart_wallet/features/profile/data/datasources/profile_local_data_src_impl.dart';
 export 'package:smart_wallet/features/profile/data/repositories/profile_repository_impl.dart';
