@@ -25,13 +25,17 @@ class TransectionHistory extends StatelessWidget {
             if (state is GetAllExpenseLoading)
               CircularProgressIndicator.adaptive(),
             if (state is GetAllExpenseSuccessfull)
-              ...state.expenseList.map(
-                (expense) => TransectionCardWidget(expense: expense),
-              ),
+              ...state.expenseList
+                  .sublist(0, getSublistLength(state.expenseList.length))
+                  .map((expense) => TransectionCardWidget(expense: expense)),
             if (state is GetAllExpenseFailed) Text(state.error.errorMessage),
           ],
         );
       },
     );
+  }
+
+  int getSublistLength(int maxLen) {
+    return maxLen > 5 ? 5 : maxLen;
   }
 }
