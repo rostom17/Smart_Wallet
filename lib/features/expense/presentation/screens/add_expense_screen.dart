@@ -2,25 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_wallet/core/utls/app_snackbar.dart';
+import 'package:smart_wallet/features/expense/domain/entities/expense_entity.dart';
 import 'package:smart_wallet/features/expense/presentation/bloc/add_expense_cubit.dart';
 import 'package:smart_wallet/features/expense/presentation/bloc/get_all_expense_cubit.dart';
+import 'package:smart_wallet/features/expense/presentation/bloc/update_expense_cubit.dart';
 import '../widgets/custom_text_field.dart';
 import 'package:smart_wallet/features/expense/presentation/widgets/add_invoice_button.dart';
 import 'package:smart_wallet/features/common/widgets/background_pattern_widget.dart';
 import 'package:smart_wallet/features/expense/presentation/widgets/add_expense_header.dart';
 
 class AddExpenseScreen extends StatefulWidget {
-  const AddExpenseScreen({super.key});
+  const AddExpenseScreen({super.key, this.expense});
+
+  final ExpenseEntity? expense;
 
   @override
   State<AddExpenseScreen> createState() => _AddExpenseScreenState();
 }
 
 class _AddExpenseScreenState extends State<AddExpenseScreen> {
-  final _nameController = TextEditingController();
-  final _amountController = TextEditingController();
-  final _dateController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  var _nameController = TextEditingController();
+  var _amountController = TextEditingController();
+  var _dateController = TextEditingController();
+  var _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    if (widget.expense != null) {
+      _nameController.text = widget.expense!.title;
+      double amount = widget.expense!.amount;
+      _amountController.text = amount.toString();
+      final date = widget.expense!.date;
+      _dateController.text = date.toString();
+    }
+    super.initState();
+  }
 
   Future<void> _addExpense() async {
     if (_formKey.currentState?.validate() ?? false) {
@@ -28,6 +44,17 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         title: _nameController.text.trim(),
         amount: double.tryParse(_amountController.text) ?? 0.0,
         dateTime: _dateController.text.trim(),
+      );
+    }
+  }
+
+  Future<void> _updateExpense() async {
+    if (_formKey.currentState?.validate() ?? false) {
+      context.read<UpdateExpenseCubit>().updateExpense(
+        id: widget.expense!.id,
+        title: _nameController.text.trim(),
+        amount: double.tryParse(_amountController.text) ?? 0.0,
+        date: _dateController.text,
       );
     }
   }
@@ -41,7 +68,9 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AddExpenseHeader(),
+            AddExpenseHeader(
+              title: widget.expense == null ? "Add Expense" : "Update Expense",
+            ),
             const SizedBox(height: 28),
             Container(
               width: double.maxFinite,
@@ -99,37 +128,72 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
               minHeight: MediaQuery.of(context).size.height * .32,
             ),
           ),
-
-          BlocConsumer<AddExpenseCubit, AddExpenseState>(
-            listener: (context, state) {
-              if (state is AddExpenseFailed) {
-                AppSnackbar.showSnackBar(
-                  context: context,
-                  content: "Failed to add new expense",
-                );
-              }
-              if (state is AddExpnseSuccessful) {
-                context.read<GetAllExpenseCubit>().getAllExpense();
-                AppSnackbar.showSnackBar(
-                  context: context,
-                  content: "New expense added",
-                );
-                context.pop();
-              }
-            },
-            builder: (context, state) {
-              return ElevatedButton(
-                onPressed: _addExpense,
-                child: state is! AddExpenseLoading
-                    ? Text("Add Expense")
-                    : CircularProgressIndicator.adaptive(
-                        backgroundColor: Colors.white,
-                      ),
-              );
-            },
-          ),
+          if (widget.expense == null) _buildAddExpnseWidgets(),
+          if (widget.expense != null) _buildUpdateExpenseWidgets(),
         ],
       ),
+    );
+  }
+
+  Widget _buildAddExpnseWidgets() {
+    return BlocConsumer<AddExpenseCubit, AddExpenseState>(
+      listener: (context, state) {
+        if (state is AddExpenseFailed) {
+          AppSnackbar.showSnackBar(
+            context: context,
+            content: "Failed to add new expense",
+          );
+        }
+        if (state is AddExpnseSuccessful) {
+          context.read<GetAllExpenseCubit>().getAllExpense();
+          AppSnackbar.showSnackBar(
+            context: context,
+            content: "New expense added",
+          );
+          context.pop();
+        }
+      },
+      builder: (context, state) {
+        return ElevatedButton(
+          onPressed: _addExpense,
+          child: state is! AddExpenseLoading
+              ? Text("Add Expense")
+              : CircularProgressIndicator.adaptive(
+                  backgroundColor: Colors.white,
+                ),
+        );
+      },
+    );
+  }
+
+  Widget _buildUpdateExpenseWidgets() {
+    return BlocConsumer<UpdateExpenseCubit, UpdateExpenseState>(
+      listener: (context, state) {
+        if (state is UpdateExpesneFailed) {
+          AppSnackbar.showSnackBar(
+            context: context,
+            content: state.errorMesssage.errorMessage,
+          );
+        }
+        if (state is UpdateExpenseSuccessful) {
+          context.read<GetAllExpenseCubit>().getAllExpense();
+          AppSnackbar.showSnackBar(
+            context: context,
+            content: state.successMessage,
+          );
+          context.pop();
+        }
+      },
+      builder: (context, state) {
+        return ElevatedButton(
+          onPressed: _updateExpense,
+          child: state is! UpdateExpenseLoading
+              ? Text("Update Expense")
+              : CircularProgressIndicator.adaptive(
+                  backgroundColor: Colors.white,
+                ),
+        );
+      },
     );
   }
 

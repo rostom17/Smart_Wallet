@@ -7,4 +7,7 @@ abstract class ExpenseRemoteDataSource {
   Future<Either<ApiError, ExpenseModel>> addExpense({
     required ExpenseModel expenseModel,
   });
+  Future<Either<ApiError, String>> updateExpnse({
+    required ExpenseModel expenseModel,
+  });
 }

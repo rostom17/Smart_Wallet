@@ -4,8 +4,10 @@ import 'package:smart_wallet/features/expense/data/repositories/expense_reposito
 import 'package:smart_wallet/features/expense/domain/repositories/expense_repository.dart';
 import 'package:smart_wallet/features/expense/domain/usecases/add_expense_usecase.dart';
 import 'package:smart_wallet/features/expense/domain/usecases/get_all_expense_usecase.dart';
+import 'package:smart_wallet/features/expense/domain/usecases/update_expense_usecase.dart';
 import 'package:smart_wallet/features/expense/presentation/bloc/add_expense_cubit.dart';
 import 'package:smart_wallet/features/expense/presentation/bloc/get_all_expense_cubit.dart';
+import 'package:smart_wallet/features/expense/presentation/bloc/update_expense_cubit.dart';
 import 'package:smart_wallet/features/profile/domain/usecases/get_current_user_usecase.dart';
 
 import 'service_locator.dart';
@@ -99,6 +101,9 @@ Future<void> setupServiceLocator() async {
   serviceLocator.registerFactory(
     () => AddExpenseUsecase(expenseRepository: serviceLocator()),
   );
+  serviceLocator.registerLazySingleton(
+    () => UpdateExpenseUsecase(expenseRepository: serviceLocator()),
+  );
 
   //Cubits
   serviceLocator.registerLazySingleton<CheckAuthStatusCubit>(
@@ -132,5 +137,8 @@ Future<void> setupServiceLocator() async {
   );
   serviceLocator.registerFactory<AddExpenseCubit>(
     () => AddExpenseCubit(addExpenseUsecase: serviceLocator()),
+  );
+  serviceLocator.registerFactory<UpdateExpenseCubit>(
+    () => UpdateExpenseCubit(updateExpenseUsecase: serviceLocator()),
   );
 }

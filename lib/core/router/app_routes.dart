@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:smart_wallet/features/expense/domain/entities/expense_entity.dart';
 import 'package:smart_wallet/features/expense/presentation/screens/add_expense_screen.dart';
 import 'package:smart_wallet/features/auth/presentation/screens/login_screen.dart';
 import 'package:smart_wallet/features/auth/presentation/screens/signup_screen.dart';
@@ -51,7 +52,13 @@ class AppRoutes {
         path: "/addExpense",
         name: addExpenseScreen,
         builder: (context, state) {
-          return AddExpenseScreen();
+          final ExpenseEntity? expense;
+          if (state.extra != null) {
+            expense = state.extra as ExpenseEntity;
+          } else {
+            expense = null;
+          }
+          return AddExpenseScreen(expense: expense);
         },
       ),
       GoRoute(

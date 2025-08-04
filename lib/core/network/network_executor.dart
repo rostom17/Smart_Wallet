@@ -63,4 +63,24 @@ class NetworkExecutor {
       return errorMapper.mapError(e as Exception);
     }
   }
+
+  Future<NetworkResponseModel> patchRequest(
+    NetworkRequsetModel requestModel,
+  ) async {
+    try {
+      final Response response = await dio.patch(
+        requestModel.path,
+        queryParameters: requestModel.queryParams,
+        data: jsonEncode(requestModel.body),
+        options: Options(headers: requestModel.headers),
+      );
+      return NetworkResponseModel(
+        statusCode: response.statusCode,
+        bodyData: response.data,
+        message: response.statusMessage ?? "${response.statusCode}",
+      );
+    } catch (e) {
+      return errorMapper.mapError(e as Exception);
+    }
+  }
 }

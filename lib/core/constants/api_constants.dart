@@ -17,4 +17,6 @@ class ApiConstants {
   static const expensesEndPoint = "/expenses";
   static const bankCardEndPoint = "/bank-cards";
   static const backCardTypesEndPoint = "/bank-cards/types";
+
+  static String updateExpenseEndPoint(int id) => "/expenses/$id";
 }

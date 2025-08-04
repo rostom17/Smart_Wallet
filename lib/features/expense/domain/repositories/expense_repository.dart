@@ -8,4 +8,8 @@ abstract class ExpenseRepository {
   Future<Either<ApiError, ExpenseEntity>> addExpense({
     required ExpenseModel expenseModel,
   });
+
+  Future<Either<ApiError, String>> updateExpense({
+    required ExpenseModel expenseModel,
+  });
 }

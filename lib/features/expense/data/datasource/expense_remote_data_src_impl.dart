@@ -44,4 +44,22 @@ class ExpenseRemoteDataSrcImpl implements ExpenseRemoteDataSource {
       return Left(ApiError(errorMessage: response.message));
     }
   }
+
+  @override
+  Future<Either<ApiError, String>> updateExpnse({
+    required ExpenseModel expenseModel,
+  }) async {
+    final NetworkResponseModel responseModel = await networkExecutor
+        .patchRequest(
+          NetworkRequsetModel(
+            path: ApiConstants.updateExpenseEndPoint(expenseModel.id ?? 0),
+            body: expenseModel.toJson(),
+          ),
+        );
+    if (responseModel.statusCode == 200 || responseModel.statusCode == 201) {
+      return Right(responseModel.bodyData["message"]);
+    } else {
+      return Left(ApiError(errorMessage: responseModel.message));
+    }
+  }
 }

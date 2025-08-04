@@ -33,4 +33,17 @@ class ExpenseRepositoryImpl extends ExpenseRepository {
       (expense) => Right(expense.toEntity()),
     );
   }
+
+  @override
+  Future<Either<ApiError, String>> updateExpense({
+    required ExpenseModel expenseModel,
+  }) async {
+    final response = await expenseRemoteDataSource.updateExpnse(
+      expenseModel: expenseModel,
+    );
+    return response.fold(
+      (error) => Left(error),
+      (successMessage) => Right(successMessage),
+    );
+  }
 }

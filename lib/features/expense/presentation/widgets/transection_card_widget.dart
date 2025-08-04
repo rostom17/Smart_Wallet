@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smart_wallet/core/constants/app_colors.dart';
+import 'package:smart_wallet/core/router/app_routes.dart';
 import 'package:smart_wallet/core/utls/date_formatter.dart';
 import 'package:smart_wallet/core/utls/transection_history.dart';
 import 'package:smart_wallet/features/expense/presentation/bloc/choose_transection_cubit.dart';
@@ -28,6 +30,9 @@ class TransectionCardWidget extends StatelessWidget {
             context.read<ChooseTransectionCubit>().selectTransection(
               expense.id,
             );
+          },
+          onLongPress: () {
+            context.pushNamed(AppRoutes.addExpenseScreen, extra: expense);
           },
           child: Padding(
             padding: const EdgeInsets.only(top: 4, bottom: 4),

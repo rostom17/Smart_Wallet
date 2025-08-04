@@ -1,10 +1,11 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class AddExpenseHeader extends StatelessWidget {
-  const AddExpenseHeader({super.key});
+  const AddExpenseHeader({super.key, required this.title});
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class AddExpenseHeader extends StatelessWidget {
           child: Icon(Icons.arrow_back_ios, color: Colors.white),
         ),
         Text(
-          "Add Expense",
+          title,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,
