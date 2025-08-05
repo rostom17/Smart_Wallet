@@ -76,7 +76,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
             shape: CircularNotchedRectangle(),
             notchMargin: 16,
             elevation: 10,
-            height: 70,
+            height: MediaQuery.of(context).size.height * .08,
             child: Row(
               children: [
                 _buildTabItem(
