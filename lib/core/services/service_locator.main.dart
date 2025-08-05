@@ -13,7 +13,9 @@ import 'package:smart_wallet/features/wallet/data/datascource/card_remote_data_s
 import 'package:smart_wallet/features/wallet/data/datascource/card_remote_data_src_impl.dart';
 import 'package:smart_wallet/features/wallet/data/repositories/wallet_repository_impl.dart';
 import 'package:smart_wallet/features/wallet/domain/repositories/wallet_repository.dart';
+import 'package:smart_wallet/features/wallet/domain/usecases/add_new_card_usecase.dart';
 import 'package:smart_wallet/features/wallet/domain/usecases/get_all_card_usecase.dart';
+import 'package:smart_wallet/features/wallet/presentation/bloc/add_new_card_cubit.dart';
 import 'package:smart_wallet/features/wallet/presentation/bloc/get_all_card_cubit.dart';
 
 import 'service_locator.dart';
@@ -119,6 +121,9 @@ Future<void> setupServiceLocator() async {
   serviceLocator.registerLazySingleton(
     () => GetAllCardUsecase(walletRepository: serviceLocator()),
   );
+  serviceLocator.registerLazySingleton(
+    () => AddNewCardUsecase(walletRepository: serviceLocator()),
+  );
 
   //Cubits
   serviceLocator.registerLazySingleton<CheckAuthStatusCubit>(
@@ -158,5 +163,8 @@ Future<void> setupServiceLocator() async {
   );
   serviceLocator.registerFactory<GetAllCardCubit>(
     () => GetAllCardCubit(getAllCardUsecase: serviceLocator()),
+  );
+  serviceLocator.registerFactory<AddNewCardCubit>(
+    () => AddNewCardCubit(addNewCardUsecase: serviceLocator()),
   );
 }
