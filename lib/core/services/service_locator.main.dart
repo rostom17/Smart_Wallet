@@ -9,6 +9,12 @@ import 'package:smart_wallet/features/expense/presentation/bloc/add_expense_cubi
 import 'package:smart_wallet/features/expense/presentation/bloc/get_all_expense_cubit.dart';
 import 'package:smart_wallet/features/expense/presentation/bloc/update_expense_cubit.dart';
 import 'package:smart_wallet/features/profile/domain/usecases/get_current_user_usecase.dart';
+import 'package:smart_wallet/features/wallet/data/datascource/card_remote_data_src.dart';
+import 'package:smart_wallet/features/wallet/data/datascource/card_remote_data_src_impl.dart';
+import 'package:smart_wallet/features/wallet/data/repositories/wallet_repository_impl.dart';
+import 'package:smart_wallet/features/wallet/domain/repositories/wallet_repository.dart';
+import 'package:smart_wallet/features/wallet/domain/usecases/get_all_card_usecase.dart';
+import 'package:smart_wallet/features/wallet/presentation/bloc/get_all_card_cubit.dart';
 
 import 'service_locator.dart';
 
@@ -61,6 +67,9 @@ Future<void> setupServiceLocator() async {
   serviceLocator.registerLazySingleton<ExpenseRemoteDataSource>(
     () => ExpenseRemoteDataSrcImpl(networkExecutor: serviceLocator()),
   );
+  serviceLocator.registerLazySingleton<CardRemoteDataSrc>(
+    () => CardRemoteDataSrcImpl(networkExecutor: serviceLocator()),
+  );
 
   //repositories
   serviceLocator.registerLazySingleton<AuthRepository>(
@@ -77,6 +86,9 @@ Future<void> setupServiceLocator() async {
   );
   serviceLocator.registerLazySingleton<ExpenseRepository>(
     () => ExpenseRepositoryImpl(expenseRemoteDataSource: serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton<WalletRepository>(
+    () => WalletRepositoryImpl(cardRemoteDataSrc: serviceLocator()),
   );
 
   //UseCases
@@ -103,6 +115,9 @@ Future<void> setupServiceLocator() async {
   );
   serviceLocator.registerLazySingleton(
     () => UpdateExpenseUsecase(expenseRepository: serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(
+    () => GetAllCardUsecase(walletRepository: serviceLocator()),
   );
 
   //Cubits
@@ -140,5 +155,8 @@ Future<void> setupServiceLocator() async {
   );
   serviceLocator.registerFactory<UpdateExpenseCubit>(
     () => UpdateExpenseCubit(updateExpenseUsecase: serviceLocator()),
+  );
+  serviceLocator.registerFactory<GetAllCardCubit>(
+    () => GetAllCardCubit(getAllCardUsecase: serviceLocator()),
   );
 }

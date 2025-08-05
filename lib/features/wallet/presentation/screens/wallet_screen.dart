@@ -6,6 +6,7 @@ import 'package:smart_wallet/core/constants/app_colors.dart';
 import 'package:smart_wallet/features/expense/presentation/bloc/bottom_nav_cubit.dart';
 import 'package:smart_wallet/features/common/widgets/background_pattern_widget.dart';
 import 'package:smart_wallet/features/common/widgets/custom_app_bar.dart';
+import 'package:smart_wallet/features/wallet/presentation/bloc/get_all_card_cubit.dart';
 import 'package:smart_wallet/features/wallet/presentation/widgets/select_option_widget.dart';
 
 class CardScreen extends StatefulWidget {
@@ -16,6 +17,12 @@ class CardScreen extends StatefulWidget {
 }
 
 class _CardScreenState extends State<CardScreen> {
+  @override
+  void initState() {
+    context.read<GetAllCardCubit>().getAllCards();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BackgroundPatternWidget(

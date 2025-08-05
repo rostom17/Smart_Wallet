@@ -8,6 +8,7 @@ import 'package:smart_wallet/features/profile/presentation/bloc/change_profile_w
 import 'package:smart_wallet/features/profile/presentation/bloc/show_password_cubit.dart';
 import 'package:smart_wallet/features/expense/presentation/bloc/time_period_selector_cubit.dart';
 import 'package:smart_wallet/features/expense/presentation/bloc/drop_down_cubit.dart';
+import 'package:smart_wallet/features/wallet/presentation/bloc/get_all_card_cubit.dart';
 import 'package:smart_wallet/features/wallet/presentation/bloc/select_other_cubit.dart';
 
 class AppBlocProviders {
@@ -74,6 +75,9 @@ class AppBlocProviders {
     BlocProvider<UpdateExpenseCubit>(
       create: (_) => serviceLocator<UpdateExpenseCubit>(),
       lazy: true,
+    ),
+    BlocProvider<GetAllCardCubit>(
+      create: (_) => serviceLocator<GetAllCardCubit>(),
     ),
   ];
 }

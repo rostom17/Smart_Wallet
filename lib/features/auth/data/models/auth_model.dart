@@ -17,11 +17,9 @@ class AuthModel implements BaseModel<AuthEntity> {
 
   factory AuthModel.fromJson(Map<String, dynamic> json) {
     return AuthModel(
-      // TODO: There is and error
-
       accessTokenModel: AccessTokenModel.fromJson(json['accessToken']),
       refreshTokenModel: RefreshTokenModel.fromJson(json['refreshToken']),
-      userModel: UserModel.fromJson(json['user'])
+      userModel: UserModel.fromJson(json['user']),
     );
   }
 
