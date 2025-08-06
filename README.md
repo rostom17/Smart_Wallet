@@ -4,7 +4,7 @@
     <img src="android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png">
   </a>
 
-  <h3 align="center">Smart Wallet: Track Your Everyday Expenses Smartly</h3>
+  <h1 align="center">Smart Wallet: Track Your Everyday Expenses Smartly</h1>
 
 A modern expense tracking application that helps you manage your finances efficiently with secure authentication and comprehensive expense management features.
 
