@@ -1,16 +1,13 @@
-# smart_wallet
+<br />
+<p align="center">
+  <a href="https://github.com/jaysavsani07/math-metrix">
+    <img src="android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png">
+  </a>
 
-A new Flutter project.
+  <!-- <h3 align="center">Math Matrix : Train Your Brain, Improve Math Skill</h3>
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  <p align="center">
+    <a href="https://apps.apple.com/us/app/math-matrix-a-math-game/id1511125332?ls=1"><img src="https://github.com/Volorf/Badges/blob/master/App%20Store/App%20Store%20Badge.png" height="60" alt="App Store" title="Math Matrix"/></a>
+    <a href="https://play.google.com/store/apps/details?id=com.nividata.mathmatrix"><img src="https://github.com/Volorf/Badges/blob/master/Google%20Play/Google%20Play%20Badge.png" height="60" alt="Google Play" title="Math Matrix"/></a>
+  </p> -->
+</p>
